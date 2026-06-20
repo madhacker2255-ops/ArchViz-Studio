@@ -1,0 +1,410 @@
+/* =========================================
+   NAV — LOGO
+========================================= */
+
+.nav-logo {
+    position: fixed;
+    top: 20px;
+    left: 24px;
+    z-index: 1002;
+    display: flex;
+    align-items: center;
+}
+
+.nav-logo img {
+    height: 36px;
+    width: auto;
+    transition: filter 0.4s ease;
+}
+
+/* On light backgrounds, the logo (often white/light PNG) gets
+   inverted + darkened so it reads against the light page */
+body.nav-scrolled .nav-logo img {
+    filter: brightness(0) saturate(100%) invert(9%) sepia(38%) saturate(2500%) hue-rotate(200deg) brightness(0.9);
+}
+
+/* =========================================
+   NAV — HAMBURGER (mobile only)
+========================================= */
+
+.nav-hamburger {
+    display: none; /* hidden on desktop */
+
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 1003;
+
+    width: 44px;
+    height: 44px;
+    padding: 10px;
+
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+
+    background: rgba(255,255,255,0.1);
+    border: 1px solid rgba(255,255,255,0.2);
+    border-radius: var(--radius-pill);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+
+    cursor: pointer;
+    transition: background 0.4s ease, border-color 0.4s ease;
+}
+
+.nav-hamburger span {
+    display: block;
+    width: 20px;
+    height: 2px;
+    background: white;
+    border-radius: 2px;
+    transition: transform 0.3s ease, opacity 0.3s ease, background 0.4s ease;
+    transform-origin: center;
+}
+
+/* Light-background state — flip to navy */
+body.nav-scrolled .nav-hamburger {
+    background: rgba(6, 24, 62, 0.06);
+    border-color: rgba(6, 24, 62, 0.14);
+}
+
+body.nav-scrolled .nav-hamburger span {
+    background: var(--navy);
+}
+
+/* When the mobile drawer is open, the hamburger sits against the
+   dark drawer background, so force it back to light icon colors */
+body.nav-scrolled .nav-hamburger[aria-expanded="true"] span {
+    background: white;
+}
+
+/* Animate to X when open */
+.nav-hamburger[aria-expanded="true"] span:nth-child(1) {
+    transform: translateY(7px) rotate(45deg);
+}
+.nav-hamburger[aria-expanded="true"] span:nth-child(2) {
+    opacity: 0;
+    transform: scaleX(0);
+}
+.nav-hamburger[aria-expanded="true"] span:nth-child(3) {
+    transform: translateY(-7px) rotate(-45deg);
+}
+
+/* =========================================
+   NAV — MENU (desktop pill)
+========================================= */
+
+.nav-menu {
+    position: fixed;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+
+    display: flex;
+    align-items: center;
+    gap: 32px;
+
+    padding: 14px 30px;
+    border-radius: var(--radius-pill);
+
+    background: var(--glass-bg);
+    backdrop-filter: blur(24px) saturate(180%);
+    -webkit-backdrop-filter: blur(24px) saturate(180%);
+    border: 1px solid var(--white-12);
+
+    box-shadow:
+        0 8px 32px rgba(0,0,0,0.18),
+        inset 0 1px 0 rgba(255,255,255,0.18),
+        inset 0 -1px 0 rgba(255,255,255,0.03);
+
+    overflow: hidden;
+    z-index: 1001;
+
+    transition:
+        opacity     0.3s ease,
+        background  0.4s ease,
+        border-color 0.4s ease,
+        box-shadow  0.4s ease;
+}
+
+/* ── Light-background (scrolled) state ──────
+   Pill flips to a soft white-glass surface so
+   navy text reads clearly underneath          */
+body.nav-scrolled .nav-menu {
+    background: linear-gradient(135deg, rgba(255,255,255,0.88), rgba(255,255,255,0.72));
+    border: 1px solid rgba(6,24,62,0.08);
+    box-shadow:
+        0 8px 28px rgba(6,24,62,0.10),
+        inset 0 1px 0 rgba(255,255,255,0.6);
+}
+
+/* Top reflection */
+.nav-menu::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 10%;
+    width: 80%;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+    pointer-events: none;
+    transition: opacity 0.4s ease;
+}
+
+body.nav-scrolled .nav-menu::before {
+    opacity: 0;
+}
+
+/* Soft blue glow */
+.nav-menu::after {
+    content: "";
+    position: absolute;
+    inset: -30px;
+    background: radial-gradient(circle at center, var(--glass-glow), transparent 70%);
+    z-index: -1;
+    pointer-events: none;
+    transition: opacity 0.4s ease;
+}
+
+body.nav-scrolled .nav-menu::after {
+    opacity: 0.5;
+}
+
+.nav-menu a {
+    position: relative;
+    display: inline-block;
+    color: var(--white-90);
+    font-size: 15px;
+    font-weight: 400;
+    letter-spacing: 0.02em;
+    transition: color 0.4s ease;
+    white-space: nowrap;
+}
+
+.nav-menu a:hover {
+    color: var(--white);
+}
+
+.nav-menu a.active {
+    color: var(--white);
+}
+
+/* Light-background state — navy text */
+body.nav-scrolled .nav-menu a {
+    color: rgba(6, 24, 62, 0.65);
+}
+
+body.nav-scrolled .nav-menu a:hover,
+body.nav-scrolled .nav-menu a.active {
+    color: var(--navy);
+}
+
+.nav-indicator {
+    position: absolute;
+    bottom: 10px;
+    height: 2px;
+    background: white;
+    border-radius: var(--radius-pill);
+    pointer-events: none;
+    transition: background 0.4s ease; /* position managed by GSAP */
+}
+
+body.nav-scrolled .nav-indicator {
+    background: var(--navy);
+}
+
+/* =========================================
+   NAV — CONTACT BUTTON
+========================================= */
+
+.nav-contact {
+    position: fixed;
+    top: 20px;
+    right: 24px;
+
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+
+    padding: 5px 18px 5px 5px;
+    border-radius: var(--radius-pill);
+
+    background: var(--white);
+    color: var(--navy);
+    font-size: 13px;
+    font-weight: 500;
+    font-family: "Chillax", system-ui, sans-serif;
+
+    box-shadow: 0 14px 34px rgba(0,0,0,0.16);
+    white-space: nowrap;
+    z-index: 1001;
+
+    transition: box-shadow 0.4s ease, transform 0.2s ease;
+}
+
+.nav-contact:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 18px 40px rgba(0,0,0,0.22);
+}
+
+body.nav-scrolled .nav-contact {
+    box-shadow: 0 10px 26px rgba(6,24,62,0.14);
+}
+
+.nav-contact img {
+    width: 38px;
+    height: 38px;
+    padding: 3px;
+    border-radius: 50%;
+    background: var(--navy);
+    object-fit: contain;
+}
+
+.nav-contact span {
+    display: block;
+}
+
+/* =========================================
+   NAV — MOBILE OVERLAY
+========================================= */
+
+.nav-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.5);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    z-index: 1000;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.nav-overlay.is-visible {
+    opacity: 1;
+}
+
+/* =========================================
+   BREAKPOINT — TABLET (≤900px)
+   Contact number hides text, shows icon only
+========================================= */
+
+@media (max-width: 900px) {
+    .nav-contact span {
+        display: none;
+    }
+    .nav-contact {
+        padding: 5px;
+        right: 72px; /* clear of hamburger */
+    }
+}
+
+/* =========================================
+   BREAKPOINT — MOBILE (≤768px)
+   Pill nav collapses into slide-down drawer
+========================================= */
+
+@media (max-width: 768px) {
+
+    /* Show hamburger */
+    .nav-hamburger {
+        display: flex;
+    }
+
+    /* Contact shifts left of hamburger */
+    .nav-contact {
+        right: 72px;
+        top: 20px;
+        padding: 5px;
+    }
+
+    /* Hide desktop pill, convert to drawer */
+    .nav-menu {
+        top: 0;
+        left: 0;
+        transform: none;
+        width: 100%;
+
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0;
+
+        padding: calc(var(--nav-height) + 16px) 32px 32px;
+        border-radius: 0 0 24px 24px;
+
+        /* Start hidden above screen */
+        pointer-events: none;
+        opacity: 0;
+        transform: translateY(-110%);
+
+        background: rgba(6, 24, 62, 0.92);
+        backdrop-filter: blur(32px) saturate(180%);
+        -webkit-backdrop-filter: blur(32px) saturate(180%);
+        border: none;
+        border-bottom: 1px solid var(--white-12);
+    }
+
+    .nav-menu.is-open {
+        pointer-events: auto;
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    /* Drawer is always dark navy glass, regardless of scroll state */
+    body.nav-scrolled .nav-menu {
+        background: rgba(6, 24, 62, 0.92);
+        border-color: transparent;
+        border-bottom: 1px solid var(--white-12);
+        box-shadow: none;
+    }
+
+    .nav-menu a {
+        font-size: 22px;
+        font-weight: 300;
+        letter-spacing: 0.04em;
+        padding: 12px 0;
+        width: 100%;
+        border-bottom: 1px solid rgba(255,255,255,0.06);
+        color: var(--white-90); /* drawer bg is always dark — override scrolled state */
+    }
+
+    .nav-menu a:hover,
+    .nav-menu a.active,
+    body.nav-scrolled .nav-menu a {
+        color: var(--white);
+    }
+
+    body.nav-scrolled .nav-menu a:hover,
+    body.nav-scrolled .nav-menu a.active {
+        color: var(--white);
+    }
+
+    .nav-menu a:last-of-type {
+        border-bottom: none;
+    }
+
+    /* Hide the sliding indicator on mobile drawer */
+    .nav-indicator {
+        display: none;
+    }
+
+    /* Show the overlay layer */
+    .nav-overlay {
+        display: block;
+    }
+}
+
+/* =========================================
+   BREAKPOINT — SMALL MOBILE (≤400px)
+========================================= */
+
+@media (max-width: 400px) {
+    .nav-logo img {
+        height: 28px;
+    }
+
+    .nav-contact {
+        right: 64px;
+    }
+}

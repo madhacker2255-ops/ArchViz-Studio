@@ -1,0 +1,103 @@
+/* =========================================
+   FONTS
+========================================= */
+
+@font-face {
+    font-family: "Chillax";
+    src: url("assets/fonts/Chillax-Light.otf") format("opentype");
+    font-weight: 300;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: "Chillax";
+    src: url("assets/fonts/Chillax-Regular.otf") format("opentype");
+    font-weight: 400;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: "Chillax";
+    src: url("assets/fonts/Chillax-Semibold.otf") format("opentype");
+    font-weight: 600;
+    font-display: swap;
+}
+
+/* =========================================
+   DESIGN TOKENS
+========================================= */
+
+:root {
+    /* Spacing scale */
+    --space-xs:  8px;
+    --space-sm:  16px;
+    --space-md:  24px;
+    --space-lg:  32px;
+    --space-xl:  48px;
+    --space-2xl: 64px;
+
+    /* Type scale */
+    --text-xs:  12px;
+    --text-sm:  14px;
+    --text-md:  16px;
+    --text-lg:  20px;
+
+    /* Border radius */
+    --radius-sm: 12px;
+    --radius-md: 16px;
+    --radius-lg: 20px;
+    --radius-pill: 999px;
+
+    /* Colors */
+    --white:       #ffffff;
+    --white-90:    rgba(255, 255, 255, 0.9);
+    --white-60:    rgba(255, 255, 255, 0.6);
+    --white-12:    rgba(255, 255, 255, 0.12);
+    --glass-bg:    linear-gradient(135deg, rgba(255,255,255,0.14), rgba(255,255,255,0.05));
+    --glass-glow:  rgba(61, 123, 255, 0.12);
+    --navy:        #06183e;
+
+    /* Layout */
+    --nav-height:  72px;
+    --hero-pad-h:  clamp(24px, 5.5vw, 80px);
+    --hero-pad-v:  clamp(20px, 4vw, 80px);
+}
+
+/* =========================================
+   RESET
+========================================= */
+
+*, *::before, *::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html, body {
+    width: 100%;
+    overflow-x: hidden;
+    font-family: "Chillax", system-ui, sans-serif;
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+}
+
+img {
+    display: block;
+    max-width: 100%;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+/* =========================================
+   REDUCED MOTION
+========================================= */
+
+@media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        transition-duration: 0.01ms !important;
+    }
+}

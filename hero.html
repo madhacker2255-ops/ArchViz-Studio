@@ -1,0 +1,625 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Archviz Studio</title>
+
+    <link rel="stylesheet" href="main.css">
+    <link rel="stylesheet" href="nav.css">
+    <link rel="stylesheet" href="hero.css">
+    <link rel="stylesheet" href="projects.css">
+    <link rel="stylesheet" href="about.css">
+</head>
+
+<body>
+    <div id="site-content">
+
+        <!-- Logo -->
+        <a href="#Home" class="nav-logo" aria-label="Archviz Studio Home">
+            <img src="assets/images/logo.png" alt="Archviz Studio Logo">
+        </a>
+
+        <!-- Hamburger toggle (mobile only) -->
+        <button class="nav-hamburger" aria-label="Open navigation menu" aria-expanded="false" aria-controls="nav-menu">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+
+        <!-- Navigation -->
+        <nav id="nav-menu" class="nav-menu" role="navigation" aria-label="Main navigation">
+            <a href="#Home" class="active">Home</a>
+            <a href="#Projects">Projects</a>
+            <a href="#about">About</a>
+            <a href="#contact">Contact</a>
+            <span class="nav-indicator" aria-hidden="true"></span>
+        </nav>
+
+        <!-- Nav overlay (mobile) -->
+        <div class="nav-overlay" aria-hidden="true"></div>
+
+        <!-- Contact Button -->
+        <a href="tel:+919876543210" class="nav-contact" aria-label="Call us at +91 98765 43210">
+            <img src="assets/images/call.png" alt="">
+            <span>+91 98765 43210</span>
+        </a>
+
+        <!-- Hero Section -->
+        <section id="Home" class="hero" aria-label="Hero">
+
+            <img src="assets/images/hero.jpg" alt="Architectural Visualization — dramatic modern building interior">
+
+            <!-- Gradient overlay -->
+            <div class="hero-overlay" aria-hidden="true"></div>
+
+            <!-- Social Links -->
+            <div class="social-links" role="list" aria-label="Social media links">
+                <a href="https://instagram.com/yourusername" target="_blank" rel="noopener noreferrer" role="listitem" aria-label="Follow on Instagram">
+                    <img src="assets/images/IGlogo.png" alt="Instagram">
+                </a>
+                <a href="https://upwork.com/yourusername" target="_blank" rel="noopener noreferrer" role="listitem" aria-label="Find us on Upwork">
+                    <img src="assets/images/UWlogo.png" alt="Upwork">
+                </a>
+                <a href="https://linkedin.com/in/yourusername" target="_blank" rel="noopener noreferrer" role="listitem" aria-label="Connect on LinkedIn">
+                    <img src="assets/images/LIlogo.png" alt="LinkedIn">
+                </a>
+            </div>
+
+            <!-- Hero Content -->
+            <div class="hero-title">
+                <span>Archviz</span>
+                <strong>Studio</strong>
+                <div class="hero-line" aria-hidden="true"></div>
+                <p class="hero-subtitle">
+                    Experience innovative architecture that transforms
+                    vision into reality, brought to life.
+                </p>
+            </div>
+
+            <!-- Location Note -->
+            <div class="location-note" aria-label="Location coordinates">
+                <strong>25.2048° N, 55.2708° E</strong>
+                <p>
+                    Delivering photorealistic architectural renders with location-accurate lighting.
+                </p>
+                <div class="location-line" aria-hidden="true"></div>
+            </div>
+
+            <!-- Stats Card -->
+            <div class="glass-box" role="status" aria-label="10 plus projects completed">
+                <strong>Projects</strong>
+                <div class="ticket-icon" aria-hidden="true">
+                    <img src="assets/images/call.png" alt="">
+                </div>
+                <span>10+</span>
+            </div>
+
+        </section>
+
+        <!-- =============================================
+             PROJECTS SECTION
+        ============================================= -->
+        <section id="Projects" class="projects-section">
+
+            <!-- Section Header -->
+            <div class="projects-header">
+                <div class="projects-heading">
+                    <h2>
+                        <span class="proj-heading-light">Selected</span>
+                        <strong class="proj-heading-bold">Projects</strong>
+                    </h2>
+                    <div class="proj-heading-line"></div>
+                    <p class="proj-heading-desc">
+                        A curated collection of architectural visualizations,<br>
+                        interior renders and design concepts.
+                    </p>
+                </div>
+
+                <!-- Filter Pills -->
+                <div class="proj-filters" role="tablist" aria-label="Filter projects by category">
+                    <button class="proj-filter active" role="tab" aria-selected="true" data-filter="all">All</button>
+                    <button class="proj-filter" role="tab" aria-selected="false" data-filter="exterior">Exterior</button>
+                    <button class="proj-filter" role="tab" aria-selected="false" data-filter="interior">Interior</button>
+                    <button class="proj-filter" role="tab" aria-selected="false" data-filter="commercial">Commercial</button>
+                    <button class="proj-filter" role="tab" aria-selected="false" data-filter="residential">Residential</button>
+                </div>
+            </div>
+
+            <!-- Projects Grid -->
+            <div class="proj-grid">
+
+                <!-- Featured Card -->
+                <article class="proj-card proj-card--featured" data-category="residential" aria-label="Modern Haven — Featured Project">
+                    <div class="proj-card__img-wrap">
+                        <img src="assets/images/project1.jpg" alt="Modern Haven — contemporary residence with minimalist facade">
+                        <div class="proj-card__img-overlay"></div>
+                    </div>
+                    <div class="proj-card__info">
+                        <p class="proj-card__eyebrow">Featured Project</p>
+                        <h3 class="proj-card__title">Modern<br>Haven</h3>
+                        <ul class="proj-card__meta" aria-label="Project details">
+                            <li>
+                                <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M7 1C4.79 1 3 2.79 3 5c0 3.25 4 8 4 8s4-4.75 4-8c0-2.21-1.79-4-4-4zm0 5.5A1.5 1.5 0 1 1 7 3a1.5 1.5 0 0 1 0 3z" fill="currentColor"/></svg>
+                                Bengaluru, India
+                            </li>
+                            <li>
+                                <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true"><rect x="1" y="2" width="12" height="11" rx="1.5" stroke="currentColor" stroke-width="1.2" fill="none"/><path d="M1 5h12" stroke="currentColor" stroke-width="1.2"/><path d="M4 1v2M10 1v2" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg>
+                                2024
+                            </li>
+                            <li>
+                                <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true"><rect x="1" y="1" width="5" height="5" rx="1" stroke="currentColor" stroke-width="1.2" fill="none"/><rect x="8" y="1" width="5" height="5" rx="1" stroke="currentColor" stroke-width="1.2" fill="none"/><rect x="1" y="8" width="5" height="5" rx="1" stroke="currentColor" stroke-width="1.2" fill="none"/><rect x="8" y="8" width="5" height="5" rx="1" stroke="currentColor" stroke-width="1.2" fill="none"/></svg>
+                                Residential
+                            </li>
+                        </ul>
+                        <div class="proj-card__divider"></div>
+                        <p class="proj-card__desc">A contemporary residence blending minimalist architecture with warm natural materials and open spaces.</p>
+                        <a href="project-detail.html" class="proj-card__cta" aria-label="View Modern Haven project">
+                            View Project
+                            <span class="proj-cta-arrow" aria-hidden="true">
+                                <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 12L12 2M12 2H5M12 2v7" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                            </span>
+                        </a>
+                    </div>
+                </article>
+
+                <!-- Grid Card: Urban Serenity -->
+                <article class="proj-card proj-card--grid" data-category="residential" aria-label="Urban Serenity project">
+                    <div class="proj-card__img-wrap">
+                        <img src="assets/images/project2.jpg" alt="Urban Serenity — modern residential exterior at dusk">
+                        <div class="proj-card__img-overlay"></div>
+                    </div>
+                    <div class="proj-card__grid-footer">
+                        <div class="proj-card__grid-info">
+                            <h3>Urban Serenity</h3>
+                            <span class="proj-card__tag">Residential</span>
+                        </div>
+                        <a href="project-detail.html" class="proj-card__arrow" aria-label="View Urban Serenity project">
+                            <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 12L12 2M12 2H5M12 2v7" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                        </a>
+                    </div>
+                </article>
+
+                <!-- Grid Card: Lake House -->
+                <article class="proj-card proj-card--grid" data-category="interior" aria-label="Lake House project">
+                    <div class="proj-card__img-wrap">
+                        <img src="assets/images/project3.jpg" alt="Lake House — bright open-plan living room with panoramic windows">
+                        <div class="proj-card__img-overlay"></div>
+                    </div>
+                    <div class="proj-card__grid-footer">
+                        <div class="proj-card__grid-info">
+                            <h3>Lake House</h3>
+                            <span class="proj-card__tag">Interior</span>
+                        </div>
+                        <a href="project-detail.html" class="proj-card__arrow" aria-label="View Lake House project">
+                            <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 12L12 2M12 2H5M12 2v7" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                        </a>
+                    </div>
+                </article>
+
+                <!-- Grid Card: Twin Pavilion -->
+                <article class="proj-card proj-card--grid" data-category="commercial" aria-label="Twin Pavilion project">
+                    <div class="proj-card__img-wrap">
+                        <img src="assets/images/project4.jpg" alt="Twin Pavilion — dramatic corridor with columns and warm lighting">
+                        <div class="proj-card__img-overlay"></div>
+                    </div>
+                    <div class="proj-card__grid-footer">
+                        <div class="proj-card__grid-info">
+                            <h3>Twin Pavilion</h3>
+                            <span class="proj-card__tag">Commercial</span>
+                        </div>
+                        <a href="project-detail.html" class="proj-card__arrow" aria-label="View Twin Pavilion project">
+                            <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 12L12 2M12 2H5M12 2v7" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                        </a>
+                    </div>
+                </article>
+
+                <!-- Grid Card: Vertex Workspace -->
+                <article class="proj-card proj-card--grid" data-category="commercial" aria-label="Vertex Workspace project">
+                    <div class="proj-card__img-wrap">
+                        <img src="assets/images/project5.jpg" alt="Vertex Workspace — glass-facade commercial building at twilight">
+                        <div class="proj-card__img-overlay"></div>
+                    </div>
+                    <div class="proj-card__grid-footer">
+                        <div class="proj-card__grid-info">
+                            <h3>Vertex Workspace</h3>
+                            <span class="proj-card__tag">Commercial</span>
+                        </div>
+                        <a href="project-detail.html" class="proj-card__arrow" aria-label="View Vertex Workspace project">
+                            <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 12L12 2M12 2H5M12 2v7" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                        </a>
+                    </div>
+                </article>
+
+            </div>
+        </section>
+
+        <!-- =============================================
+             ABOUT SECTION
+        ============================================= -->
+        <section id="about" class="about-section" aria-label="About me">
+
+            <!-- ── Page Header ── -->
+            <div class="about-header">
+                <h1 class="about-heading">
+                    <span class="about-heading__light">About</span>
+                    <strong class="about-heading__bold">Me</strong>
+                </h1>
+                <div class="about-heading-line"></div>
+                <p class="about-heading-desc">
+                    Crafting realistic visualizations<br>
+                    that bring architectural visions to life.
+                </p>
+                <a href="assets/cv.pdf" download class="about-cv-btn" aria-label="Download CV">
+                    Download CV
+                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+                        <path d="M8 2v8M4 7l4 4 4-4M2 13h12" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </a>
+            </div>
+
+            <!-- ── Bio Card ── -->
+            <div class="about-bio-card">
+                <!-- Photo panel -->
+                <div class="about-bio-card__photo">
+                    <img src="assets/images/portrait.jpg" alt="Portrait of the architect and 3D artist">
+                    <div class="about-bio-card__watermark" aria-hidden="true">Archviz Artist</div>
+                </div>
+
+                <!-- Info panel -->
+                <div class="about-bio-card__info">
+                    <p class="about-bio-card__eyebrow">Hello, I'm</p>
+                    <h2 class="about-bio-card__title">Architectural Visualizer<br>&amp; 3D Artist</h2>
+                    <p class="about-bio-card__body">
+                        I help architects, designers and developers communicate their ideas
+                        through high-quality, photo-realistic visualizations.
+                    </p>
+                    <p class="about-bio-card__body">
+                        With a strong eye for composition, lighting and detail, I create visuals
+                        that not only look stunning but also tell a story.
+                    </p>
+
+                    <!-- Stats row -->
+                    <div class="about-stats" role="list" aria-label="Key statistics">
+                        <div class="about-stat" role="listitem">
+                            <svg width="22" height="22" viewBox="0 0 22 22" fill="none" aria-hidden="true">
+                                <rect x="1" y="1" width="8" height="8" rx="1.5" stroke="currentColor" stroke-width="1.4" fill="none"/>
+                                <rect x="13" y="1" width="8" height="8" rx="1.5" stroke="currentColor" stroke-width="1.4" fill="none"/>
+                                <rect x="1" y="13" width="8" height="8" rx="1.5" stroke="currentColor" stroke-width="1.4" fill="none"/>
+                                <rect x="13" y="13" width="8" height="8" rx="1.5" stroke="currentColor" stroke-width="1.4" fill="none"/>
+                            </svg>
+                            <strong>5+</strong>
+                            <span>Years Experience</span>
+                        </div>
+                        <div class="about-stat" role="listitem">
+                            <svg width="22" height="22" viewBox="0 0 22 22" fill="none" aria-hidden="true">
+                                <rect x="1" y="3" width="20" height="17" rx="2" stroke="currentColor" stroke-width="1.4" fill="none"/>
+                                <path d="M1 8h20" stroke="currentColor" stroke-width="1.4"/>
+                                <path d="M6 1v4M16 1v4" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/>
+                            </svg>
+                            <strong>120+</strong>
+                            <span>Projects Completed</span>
+                        </div>
+                        <div class="about-stat" role="listitem">
+                            <svg width="22" height="22" viewBox="0 0 22 22" fill="none" aria-hidden="true">
+                                <circle cx="11" cy="11" r="9" stroke="currentColor" stroke-width="1.4" fill="none"/>
+                                <path d="M8 11.5l2 2 4-4" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                            <strong>80+</strong>
+                            <span>Happy Clients</span>
+                        </div>
+                        <div class="about-stat" role="listitem">
+                            <svg width="22" height="22" viewBox="0 0 22 22" fill="none" aria-hidden="true">
+                                <path d="M11 2l2.4 6.4H20l-5.2 3.8 2 6.4L11 14.8l-5.8 3.8 2-6.4L2 8.4h6.6L11 2z" stroke="currentColor" stroke-width="1.4" fill="none" stroke-linejoin="round"/>
+                            </svg>
+                            <strong>10+</strong>
+                            <span>Awards / Features</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ── Skills & Tools Card ── -->
+            <div class="about-skills-card" aria-label="Skills and tools">
+                <!-- Left: skill bars -->
+                <div class="about-skills-card__left">
+                    <p class="about-skills-eyebrow">My Expertise</p>
+                    <h3 class="about-skills-title">Skills &amp; Tools</h3>
+                    <p class="about-skills-desc">
+                        A blend of creativity, technical<br>
+                        skills and industry-standard tools<br>
+                        to deliver exceptional results.
+                    </p>
+
+                    <div class="about-bars" role="list" aria-label="Skill proficiency bars">
+                        <div class="about-bar" role="listitem">
+                            <div class="about-bar__label">
+                                <span>3D Modeling</span>
+                                <span>95%</span>
+                            </div>
+                            <div class="about-bar__track" aria-hidden="true">
+                                <div class="about-bar__fill" style="--pct: 95%"></div>
+                            </div>
+                        </div>
+                        <div class="about-bar" role="listitem">
+                            <div class="about-bar__label">
+                                <span>Lighting &amp; Rendering</span>
+                                <span>95%</span>
+                            </div>
+                            <div class="about-bar__track" aria-hidden="true">
+                                <div class="about-bar__fill" style="--pct: 95%"></div>
+                            </div>
+                        </div>
+                        <div class="about-bar" role="listitem">
+                            <div class="about-bar__label">
+                                <span>Composition</span>
+                                <span>90%</span>
+                            </div>
+                            <div class="about-bar__track" aria-hidden="true">
+                                <div class="about-bar__fill" style="--pct: 90%"></div>
+                            </div>
+                        </div>
+                        <div class="about-bar" role="listitem">
+                            <div class="about-bar__label">
+                                <span>Post Production</span>
+                                <span>90%</span>
+                            </div>
+                            <div class="about-bar__track" aria-hidden="true">
+                                <div class="about-bar__fill" style="--pct: 90%"></div>
+                            </div>
+                        </div>
+                        <div class="about-bar" role="listitem">
+                            <div class="about-bar__label">
+                                <span>Animation / Walkthrough</span>
+                                <span>85%</span>
+                            </div>
+                            <div class="about-bar__track" aria-hidden="true">
+                                <div class="about-bar__fill" style="--pct: 85%"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right: tool grid -->
+                <div class="about-skills-card__right">
+                    <div class="about-tools" role="list" aria-label="Software tools used">
+
+                        <div class="about-tool" role="listitem" aria-label="3ds Max">
+                            <div class="about-tool__icon about-tool__icon--3dsmax">
+                                <span aria-hidden="true">3</span>
+                            </div>
+                            <span class="about-tool__name">3ds Max</span>
+                        </div>
+
+                        <div class="about-tool" role="listitem" aria-label="V-Ray">
+                            <div class="about-tool__icon about-tool__icon--vray">
+                                <svg viewBox="0 0 40 24" fill="none" aria-hidden="true">
+                                    <path d="M2 4l10 16h4L26 4" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+                                    <path d="M28 4l6 8-6 8" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+                                </svg>
+                            </div>
+                            <span class="about-tool__name">V-Ray</span>
+                        </div>
+
+                        <div class="about-tool" role="listitem" aria-label="Corona">
+                            <div class="about-tool__icon about-tool__icon--corona">
+                                <svg viewBox="0 0 28 28" fill="none" aria-hidden="true">
+                                    <circle cx="14" cy="14" r="5" stroke="currentColor" stroke-width="2" fill="none"/>
+                                    <circle cx="14" cy="14" r="11" stroke="currentColor" stroke-width="1.4" stroke-dasharray="3 3" fill="none"/>
+                                </svg>
+                            </div>
+                            <span class="about-tool__name">Corona</span>
+                        </div>
+
+                        <div class="about-tool" role="listitem" aria-label="Photoshop">
+                            <div class="about-tool__icon about-tool__icon--ps">
+                                <span aria-hidden="true">Ps</span>
+                            </div>
+                            <span class="about-tool__name">Photoshop</span>
+                        </div>
+
+                        <div class="about-tool" role="listitem" aria-label="Illustrator">
+                            <div class="about-tool__icon about-tool__icon--ai">
+                                <span aria-hidden="true">Ai</span>
+                            </div>
+                            <span class="about-tool__name">Illustrator</span>
+                        </div>
+
+                        <div class="about-tool" role="listitem" aria-label="Lightroom">
+                            <div class="about-tool__icon about-tool__icon--lr">
+                                <span aria-hidden="true">Lr</span>
+                            </div>
+                            <span class="about-tool__name">Lightroom</span>
+                        </div>
+
+                        <div class="about-tool" role="listitem" aria-label="After Effects">
+                            <div class="about-tool__icon about-tool__icon--ae">
+                                <span aria-hidden="true">Ae</span>
+                            </div>
+                            <span class="about-tool__name">After Effects</span>
+                        </div>
+
+                        <div class="about-tool" role="listitem" aria-label="Unreal Engine">
+                            <div class="about-tool__icon about-tool__icon--ue">
+                                <svg viewBox="0 0 28 28" fill="none" aria-hidden="true">
+                                    <circle cx="14" cy="14" r="11" stroke="currentColor" stroke-width="1.8" fill="none"/>
+                                    <path d="M10 9v10l4-2.5 4 2.5V9l-4 2.5L10 9z" stroke="currentColor" stroke-width="1.4" fill="none" stroke-linejoin="round"/>
+                                </svg>
+                            </div>
+                            <span class="about-tool__name">Unreal Engine</span>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+            <!-- ── Process Card ── -->
+            <div class="about-process-card" aria-label="My work process">
+                <p class="about-skills-eyebrow">My Process</p>
+                <h3 class="about-process-title">How I Work</h3>
+
+                <div class="about-process-steps" role="list" aria-label="Work process steps">
+
+                    <div class="about-process-step" role="listitem">
+                        <div class="about-step__icon" aria-hidden="true">
+                            <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
+                                <path d="M11 3C7.69 3 5 5.69 5 9c0 2.12 1.07 3.99 2.7 5.12L8 19h6l.3-4.88C15.93 12.99 17 11.12 17 9c0-3.31-2.69-6-6-6z" stroke="currentColor" stroke-width="1.4" fill="none" stroke-linejoin="round"/>
+                                <path d="M9 19h4" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/>
+                            </svg>
+                        </div>
+                        <div class="about-step__num" aria-hidden="true">01</div>
+                        <strong class="about-step__name">Understand</strong>
+                        <p class="about-step__desc">I listen to your ideas and understand your vision, goals and requirements.</p>
+                    </div>
+
+                    <div class="about-process-arrow" aria-hidden="true">
+                        <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M3 9h12M10 4l5 5-5 5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                    </div>
+
+                    <div class="about-process-step" role="listitem">
+                        <div class="about-step__icon" aria-hidden="true">
+                            <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
+                                <rect x="3" y="3" width="16" height="16" rx="2" stroke="currentColor" stroke-width="1.4" fill="none"/>
+                                <path d="M7 8h8M7 11h5M14 14l2-2-2-2" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </div>
+                        <div class="about-step__num" aria-hidden="true">02</div>
+                        <strong class="about-step__name">Plan &amp; Concept</strong>
+                        <p class="about-step__desc">I develop the concept, style direction and create a clear plan.</p>
+                    </div>
+
+                    <div class="about-process-arrow" aria-hidden="true">
+                        <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M3 9h12M10 4l5 5-5 5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                    </div>
+
+                    <div class="about-process-step" role="listitem">
+                        <div class="about-step__icon" aria-hidden="true">
+                            <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
+                                <path d="M4 17l5-5 3 3 5-7" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+                                <rect x="3" y="3" width="16" height="16" rx="2" stroke="currentColor" stroke-width="1.4" fill="none"/>
+                            </svg>
+                        </div>
+                        <div class="about-step__num" aria-hidden="true">03</div>
+                        <strong class="about-step__name">Create</strong>
+                        <p class="about-step__desc">I model, light and render with attention to every detail.</p>
+                    </div>
+
+                    <div class="about-process-arrow" aria-hidden="true">
+                        <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M3 9h12M10 4l5 5-5 5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                    </div>
+
+                    <div class="about-process-step" role="listitem">
+                        <div class="about-step__icon" aria-hidden="true">
+                            <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
+                                <rect x="3" y="5" width="16" height="13" rx="1.5" stroke="currentColor" stroke-width="1.4" fill="none"/>
+                                <path d="M7 10l3 3 5-5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </div>
+                        <div class="about-step__num" aria-hidden="true">04</div>
+                        <strong class="about-step__name">Refine</strong>
+                        <p class="about-step__desc">I make revisions and refine the visuals until they're perfect.</p>
+                    </div>
+
+                    <div class="about-process-arrow" aria-hidden="true">
+                        <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M3 9h12M10 4l5 5-5 5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                    </div>
+
+                    <div class="about-process-step" role="listitem">
+                        <div class="about-step__icon" aria-hidden="true">
+                            <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
+                                <path d="M11 3v10M7 10l4 4 4-4" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+                                <path d="M4 17h14" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/>
+                            </svg>
+                        </div>
+                        <div class="about-step__num" aria-hidden="true">05</div>
+                        <strong class="about-step__name">Deliver</strong>
+                        <p class="about-step__desc">Final high-resolution visuals delivered on time.</p>
+                    </div>
+
+                </div>
+            </div>
+
+        </section>
+
+        <!-- =============================================
+             CTA BANNER (now "Let's Bring Your Vision")
+        ============================================= -->
+        <section id="contact" class="cta-banner" aria-label="Call to action">
+            <div class="cta-banner__content">
+                <p class="cta-eyebrow">Let's create something amazing</p>
+                <h2 class="cta-title">Let's Bring Your<br>Vision to Life</h2>
+                <a href="tel:+919876543210" class="cta-btn" aria-label="Start a project — call us">
+                    Start a Project
+                    <span class="proj-cta-arrow" aria-hidden="true">
+                        <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 12L12 2M12 2H5M12 2v7" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                    </span>
+                </a>
+            </div>
+            <!-- Blueprint illustration (CSS-drawn) -->
+            <div class="cta-blueprint" aria-hidden="true">
+                <svg viewBox="0 0 320 220" fill="none" xmlns="http://www.w3.org/2000/svg" class="cta-blueprint__svg">
+                    <!-- Ground -->
+                    <line x1="20" y1="190" x2="300" y2="190" stroke="rgba(255,255,255,0.18)" stroke-width="1"/>
+                    <!-- Main building outline -->
+                    <rect x="60" y="80" width="200" height="110" stroke="rgba(255,255,255,0.30)" stroke-width="1.2" fill="none"/>
+                    <!-- Upper floor setback -->
+                    <rect x="90" y="40" width="140" height="42" stroke="rgba(255,255,255,0.22)" stroke-width="1" fill="none"/>
+                    <!-- Windows row 1 -->
+                    <rect x="75"  y="100" width="28" height="20" stroke="rgba(255,255,255,0.20)" stroke-width="0.8" fill="none"/>
+                    <rect x="115" y="100" width="28" height="20" stroke="rgba(255,255,255,0.20)" stroke-width="0.8" fill="none"/>
+                    <rect x="155" y="100" width="28" height="20" stroke="rgba(255,255,255,0.20)" stroke-width="0.8" fill="none"/>
+                    <rect x="195" y="100" width="28" height="20" stroke="rgba(255,255,255,0.20)" stroke-width="0.8" fill="none"/>
+                    <rect x="235" y="100" width="18" height="20" stroke="rgba(255,255,255,0.20)" stroke-width="0.8" fill="none"/>
+                    <!-- Windows row 2 -->
+                    <rect x="75"  y="135" width="28" height="20" stroke="rgba(255,255,255,0.16)" stroke-width="0.8" fill="none"/>
+                    <rect x="115" y="135" width="28" height="20" stroke="rgba(255,255,255,0.16)" stroke-width="0.8" fill="none"/>
+                    <rect x="155" y="135" width="28" height="20" stroke="rgba(255,255,255,0.16)" stroke-width="0.8" fill="none"/>
+                    <rect x="195" y="135" width="28" height="20" stroke="rgba(255,255,255,0.16)" stroke-width="0.8" fill="none"/>
+                    <rect x="235" y="135" width="18" height="20" stroke="rgba(255,255,255,0.16)" stroke-width="0.8" fill="none"/>
+                    <!-- Door -->
+                    <rect x="140" y="158" width="40" height="32" stroke="rgba(255,255,255,0.22)" stroke-width="1" fill="none"/>
+                    <!-- Upper windows -->
+                    <rect x="105" y="50"  width="25" height="22" stroke="rgba(255,255,255,0.16)" stroke-width="0.8" fill="none"/>
+                    <rect x="145" y="50"  width="25" height="22" stroke="rgba(255,255,255,0.16)" stroke-width="0.8" fill="none"/>
+                    <rect x="185" y="50"  width="25" height="22" stroke="rgba(255,255,255,0.16)" stroke-width="0.8" fill="none"/>
+                    <!-- Trees left -->
+                    <circle cx="30" cy="174" r="14" stroke="rgba(255,255,255,0.14)" stroke-width="0.8" fill="none"/>
+                    <line   x1="30" y1="188" x2="30" y2="190" stroke="rgba(255,255,255,0.14)" stroke-width="0.8"/>
+                    <!-- Trees right -->
+                    <circle cx="290" cy="174" r="14" stroke="rgba(255,255,255,0.14)" stroke-width="0.8" fill="none"/>
+                    <line   x1="290" y1="188" x2="290" y2="190" stroke="rgba(255,255,255,0.14)" stroke-width="0.8"/>
+                    <!-- Dimension line -->
+                    <line x1="60" y1="205" x2="260" y2="205" stroke="rgba(255,255,255,0.10)" stroke-width="0.6"/>
+                    <line x1="60" y1="202" x2="60"  y2="208" stroke="rgba(255,255,255,0.10)" stroke-width="0.6"/>
+                    <line x1="260" y1="202" x2="260" y2="208" stroke="rgba(255,255,255,0.10)" stroke-width="0.6"/>
+                </svg>
+            </div>
+        </section>
+
+        <!-- =============================================
+             FOOTER
+        ============================================= -->
+        <footer class="site-footer" role="contentinfo">
+            <div class="footer__left">
+                <img src="assets/images/logo.png" alt="Archviz Studio" class="footer__logo">
+                <p class="footer__copy">&copy; 2024 Archviz Studio. All rights reserved.</p>
+            </div>
+            <nav class="footer__links" aria-label="Footer navigation">
+                <a href="https://instagram.com/yourusername"  target="_blank" rel="noopener noreferrer">Instagram</a>
+                <a href="https://linkedin.com/in/yourusername" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+                <a href="https://behance.net/yourusername"    target="_blank" rel="noopener noreferrer">Behance</a>
+                <a href="https://upwork.com/yourusername"    target="_blank" rel="noopener noreferrer">Upwork</a>
+                <a href="#" aria-label="Privacy Policy">Privacy Policy</a>
+            </nav>
+        </footer>
+
+    </div><!-- /#site-content -->
+
+    <!-- GSAP -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.7/gsap.min.js"></script>
+    <!-- Custom JS -->
+    <script src="script.js"></script>
+</body>
+
+</html>

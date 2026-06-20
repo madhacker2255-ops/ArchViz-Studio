@@ -1,0 +1,440 @@
+/* =========================================
+   HERO — BASE
+========================================= */
+
+.hero {
+    position: relative;
+    width: 100%;
+    min-height: 100svh; /* safe-area aware */
+    height: 100vh;
+    padding: var(--hero-pad-v) var(--hero-pad-h);
+    overflow: hidden;
+}
+
+/* Background image */
+.hero > img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center 30%;
+    z-index: 0;
+}
+
+/* Subtle gradient overlay — improves text legibility without washing out the image */
+.hero-overlay {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    background:
+        linear-gradient(
+            to right,
+            rgba(6, 18, 48, 0.55) 0%,
+            rgba(6, 18, 48, 0.10) 60%,
+            rgba(6, 18, 48, 0.25) 100%
+        ),
+        linear-gradient(
+            to top,
+            rgba(0,0,0,0.45) 0%,
+            transparent 50%
+        );
+    pointer-events: none;
+}
+
+/* =========================================
+   HERO — TITLE
+========================================= */
+
+.hero-title {
+    position: absolute;
+    left: var(--hero-pad-h);
+    top: 42%;
+    transform: translateY(-58%);
+    z-index: 10;
+    color: var(--white);
+    line-height: 0.9;
+    max-width: 60vw;
+}
+
+.hero-title span {
+    display: block;
+    font-weight: 300;
+    font-size: clamp(4rem, 9vw, 9.5rem);
+    letter-spacing: 0.14em;
+}
+
+.hero-title strong {
+    display: block;
+    font-weight: 600;
+    font-size: clamp(4.5rem, 9.5vw, 10rem);
+    letter-spacing: 0.01em;
+}
+
+.hero-line {
+    width: 8rem;
+    height: 2px;
+    margin-top: 1.5rem;
+    margin-left: 4px;
+    background: var(--white-90);
+}
+
+.hero-subtitle {
+    margin-top: 1.25rem;
+    margin-left: 4px;
+    max-width: 34rem;
+    font-size: clamp(1rem, 1.2vw, 1.25rem);
+    font-weight: 300;
+    line-height: 1.65;
+    color: var(--white-90);
+}
+
+/* =========================================
+   HERO — LOCATION NOTE
+========================================= */
+
+.location-note {
+    position: absolute;
+    right: var(--hero-pad-h);
+    top: 50%;
+    transform: translateY(-50%);
+    width: 210px;
+    color: var(--white);
+    z-index: 10;
+    text-align: left;
+}
+
+.location-note strong {
+    display: block;
+    font-size: 1rem;
+    font-weight: 600;
+    line-height: 1.35;
+    letter-spacing: 0.02em;
+}
+
+.location-note p {
+    margin-top: 6px;
+    font-size: 0.95rem;
+    font-weight: 300;
+    line-height: 1.5;
+    color: var(--white-90);
+}
+
+.location-line {
+    width: 100%;
+    height: 2px;
+    margin-top: 14px;
+    background: var(--white-90);
+}
+
+/* =========================================
+   HERO — SOCIAL LINKS
+========================================= */
+
+.social-links {
+    position: absolute;
+    left: var(--hero-pad-h);
+    bottom: clamp(20px, 4vw, 30px);
+
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 18px;
+
+    z-index: 10;
+}
+
+.social-links a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+.social-links a:hover {
+    transform: translateY(-2px);
+    opacity: 0.85;
+}
+
+.social-links img {
+    width: 34px;
+    height: 34px;
+    object-fit: contain;
+}
+
+/* =========================================
+   HERO — GLASS STATS CARD
+========================================= */
+
+.glass-box {
+    position: absolute;
+    right: var(--hero-pad-h);
+    bottom: clamp(20px, 4vw, 40px);
+
+    width: 180px;
+    height: 110px;
+
+    border-radius: var(--radius-lg);
+
+    background: var(--glass-bg);
+    backdrop-filter: blur(24px) saturate(180%);
+    -webkit-backdrop-filter: blur(24px) saturate(180%);
+
+    border: 1px solid var(--white-12);
+
+    box-shadow:
+        0 8px 32px rgba(0,0,0,0.18),
+        inset 0 1px 0 rgba(255,255,255,0.18),
+        inset 0 -1px 0 rgba(255,255,255,0.03);
+
+    overflow: hidden;
+    z-index: 10;
+}
+
+/* Top glint */
+.glass-box::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 10%;
+    width: 80%;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.5), transparent);
+    pointer-events: none;
+}
+
+/* Ambient glow */
+.glass-box::after {
+    content: "";
+    position: absolute;
+    inset: -20px;
+    background: radial-gradient(circle at center, var(--glass-glow), transparent 70%);
+    z-index: -1;
+    pointer-events: none;
+}
+
+.glass-box strong {
+    position: absolute;
+    top: 10px;
+    left: 14px;
+    color: var(--white);
+    font-size: 0.9rem;
+    font-weight: 300;
+    letter-spacing: 0.04em;
+}
+
+.glass-box span {
+    position: absolute;
+    right: 14px;
+    bottom: 6px;
+    color: var(--white);
+    font-size: 3rem;
+    font-weight: 600;
+    line-height: 1;
+}
+
+.ticket-icon {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+
+    width: 36px;
+    height: 18px;
+    border-radius: var(--radius-pill);
+    background: var(--white);
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.ticket-icon img {
+    width: 12px;
+    height: 12px;
+    object-fit: contain;
+}
+
+/* =========================================
+   BREAKPOINT — TABLET (≤900px)
+========================================= */
+
+@media (max-width: 900px) {
+
+    .hero-title {
+        max-width: 70vw;
+        top: 40%;
+    }
+
+    .location-note {
+        width: 180px;
+        right: clamp(20px, 3vw, 60px);
+    }
+
+    .glass-box {
+        right: clamp(20px, 3vw, 60px);
+    }
+}
+
+/* =========================================
+   BREAKPOINT — MOBILE (≤768px)
+   Full redesign of hero layout for small screens
+========================================= */
+
+@media (max-width: 768px) {
+
+    .hero {
+        padding: 0; /* remove; elements use absolute positioning */
+        height: 100svh;
+        min-height: 100svh;
+    }
+
+    /* Shift image focus to the architectural subject */
+    .hero > img {
+        object-position: 60% center;
+    }
+
+    /* Stronger gradient on mobile for legibility */
+    .hero-overlay {
+        background:
+            linear-gradient(
+                to top,
+                rgba(0,0,0,0.60) 0%,
+                rgba(6, 18, 48, 0.30) 45%,
+                rgba(6, 18, 48, 0.15) 100%
+            );
+    }
+
+    /* Title — top left, below nav */
+    .hero-title {
+        left: 28px;
+        right: 28px;
+        top: 120px;
+        transform: none;
+        max-width: 100%;
+    }
+
+    .hero-title span {
+        font-size: clamp(3.5rem, 14vw, 5.5rem);
+        letter-spacing: 0.04em;
+    }
+
+    .hero-title strong {
+        font-size: clamp(4rem, 16vw, 6.5rem);
+        letter-spacing: 0.01em;
+    }
+
+    .hero-line {
+        width: 60px;
+        margin-top: 14px;
+    }
+
+    .hero-subtitle {
+        font-size: 0.95rem;
+        line-height: 1.5;
+        max-width: 280px;
+        margin-top: 12px;
+    }
+
+    /* Location note — hidden on mobile to reduce clutter */
+    .location-note {
+        display: none;
+    }
+
+    /* Social links — bottom left */
+    .social-links {
+        left: 24px;
+        bottom: 24px;
+        gap: 14px;
+    }
+
+    .social-links img {
+        width: 26px;
+        height: 26px;
+    }
+
+    /* Glass card — bottom right, taller on mobile */
+    .glass-box {
+        right: 20px;
+        bottom: 24px;
+
+        width: 110px;
+        height: 130px;
+        border-radius: 20px;
+    }
+
+    .glass-box strong {
+        font-size: 0.8rem;
+        top: 12px;
+        left: 12px;
+    }
+
+    .glass-box span {
+        font-size: 2.75rem;
+        right: 10px;
+        bottom: 8px;
+    }
+
+    .ticket-icon {
+        top: 10px;
+        right: 10px;
+        width: 30px;
+        height: 16px;
+    }
+
+    .ticket-icon img {
+        width: 10px;
+        height: 10px;
+    }
+}
+
+/* =========================================
+   BREAKPOINT — SMALL MOBILE (≤400px)
+========================================= */
+
+@media (max-width: 400px) {
+
+    .hero-title {
+        top: 110px;
+    }
+
+    .hero-title span {
+        font-size: clamp(3rem, 13vw, 4.5rem);
+    }
+
+    .hero-title strong {
+        font-size: clamp(3.5rem, 15vw, 5.5rem);
+    }
+
+    .hero-subtitle {
+        font-size: 0.9rem;
+        max-width: 240px;
+    }
+
+    .glass-box {
+        width: 100px;
+        height: 120px;
+    }
+
+    .glass-box span {
+        font-size: 2.4rem;
+    }
+}
+
+/* =========================================
+   BREAKPOINT — LARGE DESKTOP (≥1400px)
+========================================= */
+
+@media (min-width: 1400px) {
+    .location-note {
+        width: 230px;
+    }
+
+    .glass-box {
+        width: 200px;
+        height: 120px;
+    }
+
+    .glass-box span {
+        font-size: 3.5rem;
+    }
+}

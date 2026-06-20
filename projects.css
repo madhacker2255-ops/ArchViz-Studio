@@ -1,0 +1,656 @@
+/* =========================================
+   DESIGN TOKENS — Projects palette
+   Extends main.css :root tokens
+========================================= */
+
+:root {
+    --page-bg:       #f5f4f1;   /* warm off-white from the design */
+    --navy:          #06183e;   /* deep navy — headings, featured card */
+    --navy-mid:      #0d2459;   /* slightly lighter navy */
+    --accent:        #2d5fc4;   /* clear blue — tags, CTA button */
+    --accent-light:  #d8e4ff;   /* light blue — tag chips */
+    --text-body:     #374151;   /* dark grey body text */
+    --text-muted:    #6b7280;   /* meta / caption */
+    --border:        rgba(6,24,62,0.10);
+    --card-radius:   20px;
+    --section-pad-h: clamp(20px, 5vw, 80px);
+    --section-pad-v: clamp(48px, 7vw, 96px);
+}
+
+/* =========================================
+   PAGE BACKGROUND
+   Hero is dark; everything below is light
+========================================= */
+
+body {
+    background-color: var(--page-bg);
+}
+
+/* =========================================
+   PROJECTS SECTION
+========================================= */
+
+.projects-section {
+    padding: var(--section-pad-v) var(--section-pad-h);
+    background: var(--page-bg);
+}
+
+/* ── Section Header ────────────────────── */
+
+.projects-header {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 32px;
+    margin-bottom: 40px;
+    flex-wrap: wrap;
+}
+
+.projects-heading h2 {
+    line-height: 0.92;
+}
+
+.proj-heading-light {
+    display: block;
+    font-size: clamp(2.4rem, 5vw, 4.2rem);
+    font-weight: 300;
+    color: var(--navy);
+    letter-spacing: -0.01em;
+}
+
+.proj-heading-bold {
+    display: block;
+    font-size: clamp(2.8rem, 6vw, 5rem);
+    font-weight: 600;
+    color: var(--navy);
+    letter-spacing: -0.02em;
+}
+
+.proj-heading-line {
+    width: 48px;
+    height: 3px;
+    background: var(--accent);
+    border-radius: 2px;
+    margin-top: 16px;
+    margin-bottom: 18px;
+}
+
+.proj-heading-desc {
+    font-size: clamp(0.9rem, 1.1vw, 1rem);
+    font-weight: 300;
+    color: var(--text-body);
+    line-height: 1.6;
+    max-width: 320px;
+}
+
+/* ── Filter Pills ──────────────────────── */
+
+.proj-filters {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    flex-wrap: wrap;
+    padding: 6px;
+    border: 1.5px solid var(--border);
+    border-radius: var(--radius-pill);
+    background: rgba(255,255,255,0.7);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    align-self: flex-start;
+    margin-top: 8px;
+}
+
+.proj-filter {
+    padding: 8px 20px;
+    border: none;
+    border-radius: var(--radius-pill);
+    background: transparent;
+    color: var(--text-muted);
+    font-family: "Chillax", system-ui, sans-serif;
+    font-size: 0.88rem;
+    font-weight: 400;
+    cursor: pointer;
+    transition: background 0.2s ease, color 0.2s ease, box-shadow 0.2s ease;
+    white-space: nowrap;
+    line-height: 1;
+}
+
+.proj-filter:hover {
+    color: var(--navy);
+    background: rgba(6,24,62,0.05);
+}
+
+.proj-filter.active {
+    background: var(--white);
+    color: var(--navy);
+    font-weight: 500;
+    box-shadow: 0 2px 10px rgba(6,24,62,0.10);
+}
+
+/* ── Projects Grid ─────────────────────── */
+
+.proj-grid {
+    display: grid;
+    gap: 20px;
+    /* Featured full-width, then 2-col below */
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto auto auto;
+}
+
+/* ── Featured Card ─────────────────────── */
+
+.proj-card--featured {
+    grid-column: 1 / -1; /* spans full width */
+    display: grid;
+    grid-template-columns: 1fr 380px;
+    background: var(--navy);
+    border-radius: var(--card-radius);
+    overflow: hidden;
+    min-height: 380px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.proj-card--featured:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 20px 50px rgba(6,24,62,0.20);
+}
+
+.proj-card--featured .proj-card__img-wrap {
+    position: relative;
+    overflow: hidden;
+}
+
+.proj-card--featured .proj-card__img-wrap img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    transition: transform 0.6s ease;
+}
+
+.proj-card--featured:hover .proj-card__img-wrap img {
+    transform: scale(1.03);
+}
+
+.proj-card__img-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to right, transparent 60%, rgba(6,24,62,0.4));
+    pointer-events: none;
+}
+
+.proj-card--featured .proj-card__info {
+    padding: 40px 36px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 12px;
+    color: var(--white);
+}
+
+.proj-card__eyebrow {
+    font-size: 0.78rem;
+    font-weight: 400;
+    letter-spacing: 0.06em;
+    color: rgba(255,255,255,0.65);
+    text-transform: uppercase;
+}
+
+.proj-card__title {
+    font-size: clamp(2rem, 3vw, 3rem);
+    font-weight: 300;
+    line-height: 1.05;
+    color: var(--white);
+    letter-spacing: -0.01em;
+    margin-top: 2px;
+}
+
+/* Meta list */
+.proj-card__meta {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-top: 4px;
+}
+
+.proj-card__meta li {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.88rem;
+    font-weight: 300;
+    color: rgba(255,255,255,0.80);
+}
+
+.proj-card__meta svg {
+    flex-shrink: 0;
+    opacity: 0.75;
+}
+
+.proj-card__divider {
+    width: 100%;
+    height: 1px;
+    background: rgba(255,255,255,0.14);
+    margin: 4px 0;
+}
+
+.proj-card__desc {
+    font-size: 0.88rem;
+    font-weight: 300;
+    line-height: 1.65;
+    color: rgba(255,255,255,0.75);
+    max-width: 280px;
+}
+
+/* View Project button */
+.proj-card__cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 8px;
+    padding: 12px 22px;
+    border-radius: var(--radius-pill);
+    background: rgba(255,255,255,0.14);
+    border: 1px solid rgba(255,255,255,0.22);
+    color: var(--white);
+    font-family: "Chillax", system-ui, sans-serif;
+    font-size: 0.88rem;
+    font-weight: 400;
+    letter-spacing: 0.02em;
+    align-self: flex-start;
+    transition: background 0.25s ease, border-color 0.25s ease, transform 0.2s ease;
+}
+
+.proj-card__cta:hover {
+    background: rgba(255,255,255,0.24);
+    border-color: rgba(255,255,255,0.40);
+    transform: translateX(2px);
+}
+
+/* Arrow pill */
+.proj-cta-arrow {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background: var(--white);
+    color: var(--navy);
+    flex-shrink: 0;
+}
+
+/* ── Grid Cards (small) ────────────────── */
+
+.proj-card--grid {
+    background: var(--white);
+    border-radius: var(--card-radius);
+    overflow: hidden;
+    border: 1.5px solid var(--border);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.proj-card--grid:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 14px 36px rgba(6,24,62,0.12);
+}
+
+.proj-card--grid .proj-card__img-wrap {
+    position: relative;
+    overflow: hidden;
+    aspect-ratio: 4/3;
+}
+
+.proj-card--grid .proj-card__img-wrap img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    transition: transform 0.55s ease;
+}
+
+.proj-card--grid:hover .proj-card__img-wrap img {
+    transform: scale(1.04);
+}
+
+.proj-card--grid .proj-card__img-overlay {
+    background: linear-gradient(to top, rgba(6,24,62,0.18), transparent 60%);
+}
+
+.proj-card__grid-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 18px 20px;
+    gap: 12px;
+}
+
+.proj-card__grid-info h3 {
+    font-size: 1.05rem;
+    font-weight: 500;
+    color: var(--navy);
+    line-height: 1.2;
+}
+
+.proj-card__tag {
+    display: inline-block;
+    margin-top: 4px;
+    font-size: 0.78rem;
+    font-weight: 400;
+    color: var(--accent);
+    letter-spacing: 0.01em;
+}
+
+/* Arrow button on grid cards */
+.proj-card__arrow {
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    border: 1.5px solid var(--border);
+    background: transparent;
+    color: var(--navy);
+    transition: background 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
+}
+
+.proj-card__arrow:hover {
+    background: var(--navy);
+    border-color: var(--navy);
+    color: var(--white);
+    transform: rotate(45deg);
+}
+
+/* Hidden cards (filtered out) */
+.proj-card[aria-hidden="true"] {
+    display: none;
+}
+
+/* =========================================
+   CTA BANNER
+========================================= */
+
+.cta-banner {
+    margin: 0 var(--section-pad-h) var(--section-pad-v);
+    padding: clamp(40px, 6vw, 72px) clamp(32px, 5vw, 72px);
+    background: var(--navy);
+    border-radius: 24px;
+    position: relative;
+    overflow: hidden;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 32px;
+}
+
+.cta-banner__content {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+    max-width: 460px;
+}
+
+.cta-eyebrow {
+    font-size: 0.8rem;
+    font-weight: 400;
+    letter-spacing: 0.08em;
+    color: rgba(255,255,255,0.55);
+    text-transform: uppercase;
+}
+
+.cta-title {
+    font-size: clamp(1.8rem, 3.5vw, 3rem);
+    font-weight: 300;
+    color: var(--white);
+    line-height: 1.12;
+    letter-spacing: -0.01em;
+}
+
+.cta-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    align-self: flex-start;
+    padding: 14px 26px;
+    border-radius: var(--radius-pill);
+    background: var(--accent);
+    color: var(--white);
+    font-family: "Chillax", system-ui, sans-serif;
+    font-size: 0.95rem;
+    font-weight: 500;
+    letter-spacing: 0.02em;
+    transition: background 0.25s ease, transform 0.2s ease, box-shadow 0.25s ease;
+}
+
+.cta-btn:hover {
+    background: #1e4db0;
+    transform: translateY(-1px);
+    box-shadow: 0 10px 30px rgba(45,95,196,0.35);
+}
+
+/* Blueprint illustration */
+.cta-blueprint {
+    position: relative;
+    z-index: 1;
+    flex-shrink: 0;
+    width: clamp(200px, 32%, 340px);
+    opacity: 0.85;
+}
+
+.cta-blueprint__svg {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+/* =========================================
+   FOOTER
+========================================= */
+
+.site-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+
+    padding: 28px var(--section-pad-h);
+    border-top: 1.5px solid var(--border);
+    background: var(--page-bg);
+
+    flex-wrap: wrap;
+}
+
+.footer__left {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.footer__logo {
+    height: 28px;
+    width: auto;
+    opacity: 0.85;
+}
+
+.footer__copy {
+    font-size: 0.83rem;
+    font-weight: 300;
+    color: var(--text-muted);
+}
+
+.footer__links {
+    display: flex;
+    align-items: center;
+    gap: clamp(16px, 2.5vw, 36px);
+    flex-wrap: wrap;
+}
+
+.footer__links a {
+    font-size: 0.83rem;
+    font-weight: 400;
+    color: var(--text-muted);
+    transition: color 0.2s ease;
+    white-space: nowrap;
+}
+
+.footer__links a:hover {
+    color: var(--navy);
+}
+
+/* =========================================
+   BREAKPOINT — TABLET (≤1024px)
+========================================= */
+
+@media (max-width: 1024px) {
+    .proj-card--featured {
+        grid-template-columns: 1fr 320px;
+    }
+
+    .proj-card--featured .proj-card__info {
+        padding: 32px 28px;
+    }
+
+    .proj-card__title {
+        font-size: 2.2rem;
+    }
+}
+
+/* =========================================
+   BREAKPOINT — MOBILE (≤768px)
+========================================= */
+
+@media (max-width: 768px) {
+
+    /* Header stacks vertically */
+    .projects-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 24px;
+        margin-bottom: 28px;
+    }
+
+    .proj-heading-desc br {
+        display: none;
+    }
+
+    /* Filters scroll horizontally */
+    .proj-filters {
+        width: 100%;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none;
+        flex-wrap: nowrap;
+        padding: 5px;
+        gap: 4px;
+    }
+
+    .proj-filters::-webkit-scrollbar {
+        display: none;
+    }
+
+    .proj-filter {
+        padding: 7px 16px;
+        font-size: 0.82rem;
+    }
+
+    /* Featured card stacks */
+    .proj-card--featured {
+        grid-template-columns: 1fr;
+        min-height: unset;
+    }
+
+    .proj-card--featured .proj-card__img-wrap {
+        aspect-ratio: 16/9;
+    }
+
+    .proj-card--featured .proj-card__img-overlay {
+        background: linear-gradient(to top, rgba(6,24,62,0.55) 0%, transparent 70%);
+    }
+
+    .proj-card--featured .proj-card__info {
+        padding: 28px 24px 32px;
+        gap: 10px;
+    }
+
+    .proj-card__title {
+        font-size: 2rem;
+    }
+
+    /* Grid cards single column */
+    .proj-grid {
+        grid-template-columns: 1fr;
+        gap: 16px;
+    }
+
+    /* CTA banner stacks */
+    .cta-banner {
+        margin: 0 16px var(--section-pad-v);
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 40px 28px;
+        border-radius: 20px;
+    }
+
+    .cta-blueprint {
+        width: 100%;
+        max-width: 280px;
+        align-self: center;
+        opacity: 0.5;
+    }
+
+    /* Footer stacks */
+    .site-footer {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 20px;
+        padding: 24px var(--section-pad-h);
+    }
+
+    .footer__links {
+        gap: 20px;
+    }
+}
+
+/* =========================================
+   BREAKPOINT — SMALL MOBILE (≤480px)
+========================================= */
+
+@media (max-width: 480px) {
+    .projects-section {
+        padding-top: 40px;
+    }
+
+    .cta-banner {
+        margin: 0 12px clamp(40px, 8vw, 80px);
+        padding: 32px 20px;
+    }
+
+    .cta-title {
+        font-size: 1.7rem;
+    }
+
+    .footer__links {
+        gap: 14px;
+    }
+}
+
+/* =========================================
+   BREAKPOINT — LARGE DESKTOP (≥1400px)
+========================================= */
+
+@media (min-width: 1400px) {
+    .proj-card--featured {
+        grid-template-columns: 1fr 420px;
+    }
+
+    .proj-card--featured .proj-card__info {
+        padding: 52px 44px;
+    }
+}

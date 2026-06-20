@@ -1,0 +1,715 @@
+/* =========================================
+   ABOUT SECTION
+   Tokens inherited from main.css & projects.css
+========================================= */
+
+/* ── Section wrapper ─────────────────────── */
+
+.about-section {
+    padding: var(--section-pad-v) var(--section-pad-h);
+    background: var(--page-bg);
+    display: flex;
+    flex-direction: column;
+    gap: 28px;
+}
+
+/* =========================================
+   ABOUT — PAGE HEADER
+========================================= */
+
+.about-header {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+}
+
+.about-heading {
+    line-height: 0.9;
+}
+
+.about-heading__light {
+    display: block;
+    font-size: clamp(2.6rem, 6vw, 5rem);
+    font-weight: 300;
+    color: var(--navy);
+    letter-spacing: -0.01em;
+}
+
+.about-heading__bold {
+    display: block;
+    font-size: clamp(3rem, 7vw, 5.8rem);
+    font-weight: 600;
+    color: var(--navy);
+    letter-spacing: -0.02em;
+}
+
+.about-heading-line {
+    width: 44px;
+    height: 3px;
+    background: var(--accent);
+    border-radius: 2px;
+    margin-top: 20px;
+    margin-bottom: 16px;
+}
+
+.about-heading-desc {
+    font-size: clamp(0.95rem, 1.2vw, 1.05rem);
+    font-weight: 300;
+    color: var(--text-body);
+    line-height: 1.55;
+    margin-bottom: 28px;
+}
+
+/* CV download button */
+.about-cv-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 22px;
+    border-radius: var(--radius-pill);
+    border: 1.5px solid var(--border);
+    background: transparent;
+    color: var(--navy);
+    font-family: "Chillax", system-ui, sans-serif;
+    font-size: 0.88rem;
+    font-weight: 400;
+    letter-spacing: 0.01em;
+    align-self: flex-start;
+    transition:
+        background   0.22s ease,
+        border-color 0.22s ease,
+        color        0.22s ease,
+        box-shadow   0.22s ease,
+        transform    0.18s ease;
+}
+
+.about-cv-btn:hover {
+    background: var(--navy);
+    border-color: var(--navy);
+    color: var(--white);
+    box-shadow: 0 8px 24px rgba(6, 24, 62, 0.22);
+    transform: translateY(-1px);
+}
+
+.about-cv-btn svg {
+    transition: transform 0.22s ease;
+}
+
+.about-cv-btn:hover svg {
+    transform: translateY(2px);
+}
+
+/* =========================================
+   ABOUT — BIO CARD
+========================================= */
+
+.about-bio-card {
+    display: grid;
+    grid-template-columns: 300px 1fr;
+    background: var(--white);
+    border: 1.5px solid var(--border);
+    border-radius: var(--card-radius);
+    overflow: hidden;
+    transition: box-shadow 0.3s ease;
+}
+
+.about-bio-card:hover {
+    box-shadow: 0 12px 40px rgba(6, 24, 62, 0.10);
+}
+
+/* Photo panel */
+.about-bio-card__photo {
+    position: relative;
+    background: #dde3ed;
+    overflow: hidden;
+    min-height: 360px;
+}
+
+.about-bio-card__photo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center top;
+    transition: transform 0.6s ease;
+}
+
+.about-bio-card:hover .about-bio-card__photo img {
+    transform: scale(1.03);
+}
+
+/* Watermark signature */
+.about-bio-card__watermark {
+    position: absolute;
+    bottom: 20px;
+    left: 0;
+    right: 0;
+    text-align: center;
+    font-size: 1.4rem;
+    font-weight: 300;
+    color: rgba(255,255,255,0.55);
+    letter-spacing: 0.04em;
+    pointer-events: none;
+    font-style: italic;
+}
+
+/* Info panel */
+.about-bio-card__info {
+    padding: clamp(28px, 4vw, 48px);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 14px;
+}
+
+.about-bio-card__eyebrow {
+    font-size: 0.82rem;
+    font-weight: 400;
+    letter-spacing: 0.05em;
+    color: var(--accent);
+    text-transform: uppercase;
+}
+
+.about-bio-card__title {
+    font-size: clamp(1.5rem, 2.8vw, 2.4rem);
+    font-weight: 300;
+    color: var(--navy);
+    line-height: 1.15;
+    letter-spacing: -0.01em;
+}
+
+.about-bio-card__body {
+    font-size: 0.95rem;
+    font-weight: 300;
+    color: var(--text-body);
+    line-height: 1.7;
+    max-width: 520px;
+}
+
+/* ── Stats row ──────────────────────────── */
+
+.about-stats {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+    margin-top: 8px;
+    padding-top: 20px;
+    border-top: 1.5px solid var(--border);
+}
+
+.about-stat {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 6px;
+    color: var(--text-muted);
+    transition: color 0.2s ease;
+}
+
+.about-stat:hover {
+    color: var(--navy);
+}
+
+.about-stat svg {
+    color: var(--text-muted);
+    transition: color 0.2s ease;
+}
+
+.about-stat:hover svg {
+    color: var(--navy);
+}
+
+.about-stat strong {
+    font-size: clamp(1.3rem, 2vw, 1.8rem);
+    font-weight: 600;
+    color: var(--navy);
+    line-height: 1;
+    transition: color 0.2s ease;
+}
+
+.about-stat:hover strong {
+    color: var(--navy-mid);
+}
+
+.about-stat span {
+    font-size: 0.78rem;
+    font-weight: 300;
+    line-height: 1.3;
+}
+
+/* =========================================
+   ABOUT — SKILLS & TOOLS CARD
+========================================= */
+
+.about-skills-card {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    background: var(--white);
+    border: 1.5px solid var(--border);
+    border-radius: var(--card-radius);
+    overflow: hidden;
+    transition: box-shadow 0.3s ease;
+}
+
+.about-skills-card:hover {
+    box-shadow: 0 12px 40px rgba(6, 24, 62, 0.10);
+}
+
+.about-skills-card__left {
+    padding: clamp(28px, 4vw, 48px);
+    border-right: 1.5px solid var(--border);
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.about-skills-card__right {
+    padding: clamp(24px, 3vw, 40px);
+    display: flex;
+    align-items: center;
+}
+
+/* Shared eyebrow label */
+.about-skills-eyebrow {
+    font-size: 0.78rem;
+    font-weight: 400;
+    letter-spacing: 0.06em;
+    color: var(--accent);
+    text-transform: uppercase;
+    margin-bottom: 4px;
+}
+
+.about-skills-title {
+    font-size: clamp(1.4rem, 2.4vw, 2rem);
+    font-weight: 300;
+    color: var(--navy);
+    line-height: 1.2;
+    margin-bottom: 8px;
+}
+
+.about-skills-desc {
+    font-size: 0.88rem;
+    font-weight: 300;
+    color: var(--text-body);
+    line-height: 1.6;
+    margin-bottom: 20px;
+}
+
+/* ── Skill bars ──────────────────────────── */
+
+.about-bars {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+.about-bar__label {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-bottom: 6px;
+    font-size: 0.85rem;
+    font-weight: 400;
+    color: var(--navy);
+}
+
+.about-bar__label span:last-child {
+    font-size: 0.8rem;
+    font-weight: 300;
+    color: var(--text-muted);
+}
+
+.about-bar__track {
+    width: 100%;
+    height: 4px;
+    background: rgba(6, 24, 62, 0.08);
+    border-radius: 2px;
+    overflow: hidden;
+}
+
+.about-bar__fill {
+    height: 100%;
+    width: var(--pct);
+    background: linear-gradient(to right, var(--accent), var(--navy));
+    border-radius: 2px;
+    transform-origin: left;
+    /* Animate on section entry via JS class, or CSS animation */
+    animation: bar-grow 1s ease forwards;
+}
+
+@keyframes bar-grow {
+    from { width: 0; }
+    to   { width: var(--pct); }
+}
+
+/* ── Tool grid ───────────────────────────── */
+
+.about-tools {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px 16px;
+    width: 100%;
+}
+
+.about-tool {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    cursor: default;
+}
+
+.about-tool__icon {
+    width: 52px;
+    height: 52px;
+    border-radius: var(--radius-sm);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--white);
+    border: 1.5px solid transparent;
+    transition:
+        transform    0.22s ease,
+        box-shadow   0.22s ease,
+        background   0.22s ease,
+        border-color 0.22s ease;
+}
+
+/* hover: every tool icon deepens to navy */
+.about-tool:hover .about-tool__icon {
+    transform: translateY(-3px) scale(1.06);
+    box-shadow: 0 8px 20px rgba(6, 24, 62, 0.25);
+    background: var(--navy) !important;
+    border-color: var(--navy-mid);
+    color: var(--white);
+}
+
+/* Icon brand colours (resting) */
+.about-tool__icon--3dsmax { background: #1a4b91; font-size: 1.6rem; font-weight: 800; }
+.about-tool__icon--vray   { background: #2a2a2a; }
+.about-tool__icon--vray svg { width: 32px; height: 20px; }
+.about-tool__icon--corona { background: #c1440e; }
+.about-tool__icon--corona svg { width: 28px; height: 28px; }
+.about-tool__icon--ps     { background: #1e3a5f; font-size: 0.95rem; letter-spacing: -0.02em; }
+.about-tool__icon--ai     { background: #c5570a; font-size: 0.95rem; letter-spacing: -0.02em; }
+.about-tool__icon--lr     { background: #1a3a5f; font-size: 0.95rem; letter-spacing: -0.02em; }
+.about-tool__icon--ae     { background: #1a0b3b; font-size: 0.95rem; letter-spacing: -0.02em; }
+.about-tool__icon--ue     { background: #1a1a1a; }
+.about-tool__icon--ue svg { width: 28px; height: 28px; }
+
+.about-tool__name {
+    font-size: 0.75rem;
+    font-weight: 400;
+    color: var(--text-muted);
+    text-align: center;
+    transition: color 0.22s ease;
+}
+
+.about-tool:hover .about-tool__name {
+    color: var(--navy);
+}
+
+/* =========================================
+   ABOUT — PROCESS CARD
+========================================= */
+
+.about-process-card {
+    background: var(--white);
+    border: 1.5px solid var(--border);
+    border-radius: var(--card-radius);
+    padding: clamp(28px, 4vw, 48px);
+    transition: box-shadow 0.3s ease;
+}
+
+.about-process-card:hover {
+    box-shadow: 0 12px 40px rgba(6, 24, 62, 0.10);
+}
+
+.about-process-title {
+    font-size: clamp(1.4rem, 2.4vw, 2rem);
+    font-weight: 300;
+    color: var(--navy);
+    margin-top: 6px;
+    margin-bottom: 32px;
+}
+
+/* Steps row */
+.about-process-steps {
+    display: flex;
+    align-items: flex-start;
+    gap: 0;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    padding-bottom: 4px;
+}
+
+.about-process-steps::-webkit-scrollbar {
+    display: none;
+}
+
+/* Arrow between steps */
+.about-process-arrow {
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    padding: 0 8px;
+    margin-top: 26px;  /* align with icon row */
+    color: var(--text-muted);
+    transition: color 0.2s ease;
+}
+
+/* Step block */
+.about-process-step {
+    flex: 1;
+    min-width: 140px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    padding: 16px 12px;
+    border-radius: var(--radius-md);
+    transition:
+        background   0.22s ease,
+        box-shadow   0.22s ease,
+        transform    0.22s ease;
+    cursor: default;
+}
+
+.about-process-step:hover {
+    background: var(--navy);
+    box-shadow: 0 8px 28px rgba(6, 24, 62, 0.20);
+    transform: translateY(-3px);
+}
+
+/* Icon circle */
+.about-step__icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: rgba(6, 24, 62, 0.07);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--navy);
+    flex-shrink: 0;
+    transition:
+        background 0.22s ease,
+        color      0.22s ease;
+}
+
+.about-process-step:hover .about-step__icon {
+    background: rgba(255,255,255,0.14);
+    color: var(--white);
+}
+
+.about-step__num {
+    font-size: 0.75rem;
+    font-weight: 300;
+    color: var(--text-muted);
+    letter-spacing: 0.04em;
+    transition: color 0.22s ease;
+}
+
+.about-process-step:hover .about-step__num {
+    color: rgba(255,255,255,0.55);
+}
+
+.about-step__name {
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: var(--navy);
+    line-height: 1.2;
+    transition: color 0.22s ease;
+}
+
+.about-process-step:hover .about-step__name {
+    color: var(--white);
+}
+
+.about-step__desc {
+    font-size: 0.8rem;
+    font-weight: 300;
+    color: var(--text-muted);
+    line-height: 1.55;
+    max-width: 160px;
+    transition: color 0.22s ease;
+}
+
+.about-process-step:hover .about-step__desc {
+    color: rgba(255,255,255,0.75);
+}
+
+/* Arrow colour follows neighbour hover via sibling selectors */
+.about-process-step:hover + .about-process-arrow {
+    color: var(--navy);
+}
+
+/* =========================================
+   RESPONSIVE — TABLET (≤1024px)
+========================================= */
+
+@media (max-width: 1024px) {
+
+    .about-bio-card {
+        grid-template-columns: 260px 1fr;
+    }
+
+    .about-bio-card__photo {
+        min-height: 300px;
+    }
+
+    .about-stats {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .about-tools {
+        grid-template-columns: repeat(4, 1fr);
+        gap: 16px 12px;
+    }
+
+    .about-tool__icon {
+        width: 46px;
+        height: 46px;
+    }
+}
+
+/* =========================================
+   RESPONSIVE — MOBILE (≤768px)
+========================================= */
+
+@media (max-width: 768px) {
+
+    .about-section {
+        gap: 20px;
+    }
+
+    /* Heading */
+    .about-heading__light { font-size: clamp(2.2rem, 10vw, 3.5rem); }
+    .about-heading__bold  { font-size: clamp(2.6rem, 12vw, 4.2rem); }
+    .about-heading-desc br { display: none; }
+
+    /* Bio card stacks */
+    .about-bio-card {
+        grid-template-columns: 1fr;
+    }
+
+    .about-bio-card__photo {
+        min-height: 240px;
+        max-height: 300px;
+    }
+
+    .about-bio-card__info {
+        padding: 24px 20px;
+        gap: 12px;
+    }
+
+    .about-bio-card__title {
+        font-size: 1.5rem;
+    }
+
+    /* Stats 2-col on mobile */
+    .about-stats {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 14px;
+        padding-top: 16px;
+        margin-top: 4px;
+    }
+
+    /* Skills card stacks */
+    .about-skills-card {
+        grid-template-columns: 1fr;
+    }
+
+    .about-skills-card__left {
+        border-right: none;
+        border-bottom: 1.5px solid var(--border);
+        padding-bottom: 28px;
+    }
+
+    .about-skills-card__right {
+        padding: 24px 20px;
+    }
+
+    /* Tool grid 4-col stays but shrinks */
+    .about-tools {
+        grid-template-columns: repeat(4, 1fr);
+        gap: 14px 8px;
+    }
+
+    .about-tool__icon {
+        width: 42px;
+        height: 42px;
+        border-radius: 10px;
+        font-size: 0.85rem;
+    }
+
+    .about-tool__name {
+        font-size: 0.68rem;
+    }
+
+    /* Process steps: keep horizontal scroll */
+    .about-process-steps {
+        gap: 0;
+        padding-bottom: 8px;
+    }
+
+    .about-process-step {
+        min-width: 130px;
+        padding: 12px 10px;
+    }
+
+    .about-step__desc {
+        font-size: 0.75rem;
+        max-width: 130px;
+    }
+}
+
+/* =========================================
+   RESPONSIVE — SMALL MOBILE (≤480px)
+========================================= */
+
+@media (max-width: 480px) {
+
+    .about-stats {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 12px;
+    }
+
+    .about-tools {
+        grid-template-columns: repeat(4, 1fr);
+        gap: 12px 6px;
+    }
+
+    .about-tool__icon {
+        width: 38px;
+        height: 38px;
+        border-radius: 9px;
+    }
+
+    .about-process-step {
+        min-width: 118px;
+        padding: 10px 8px;
+    }
+}
+
+/* =========================================
+   RESPONSIVE — LARGE DESKTOP (≥1400px)
+========================================= */
+
+@media (min-width: 1400px) {
+
+    .about-bio-card {
+        grid-template-columns: 360px 1fr;
+    }
+
+    .about-tools {
+        gap: 24px 20px;
+    }
+
+    .about-tool__icon {
+        width: 58px;
+        height: 58px;
+    }
+}
