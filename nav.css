@@ -17,12 +17,6 @@
     transition: filter 0.4s ease;
 }
 
-/* On light backgrounds, the logo (often white/light PNG) gets
-   inverted + darkened so it reads against the light page */
-body.nav-scrolled .nav-logo img {
-    filter: brightness(0) saturate(100%) invert(9%) sepia(38%) saturate(2500%) hue-rotate(200deg) brightness(0.9);
-}
-
 /* =========================================
    NAV — HAMBURGER (mobile only)
 ========================================= */
@@ -61,22 +55,6 @@ body.nav-scrolled .nav-logo img {
     border-radius: 2px;
     transition: transform 0.3s ease, opacity 0.3s ease, background 0.4s ease;
     transform-origin: center;
-}
-
-/* Light-background state — flip to navy */
-body.nav-scrolled .nav-hamburger {
-    background: rgba(6, 24, 62, 0.06);
-    border-color: rgba(6, 24, 62, 0.14);
-}
-
-body.nav-scrolled .nav-hamburger span {
-    background: var(--navy);
-}
-
-/* When the mobile drawer is open, the hamburger sits against the
-   dark drawer background, so force it back to light icon colors */
-body.nav-scrolled .nav-hamburger[aria-expanded="true"] span {
-    background: white;
 }
 
 /* Animate to X when open */
@@ -128,17 +106,6 @@ body.nav-scrolled .nav-hamburger[aria-expanded="true"] span {
         box-shadow  0.4s ease;
 }
 
-/* ── Light-background (scrolled) state ──────
-   Pill flips to a soft white-glass surface so
-   navy text reads clearly underneath          */
-body.nav-scrolled .nav-menu {
-    background: linear-gradient(135deg, rgba(255,255,255,0.88), rgba(255,255,255,0.72));
-    border: 1px solid rgba(6,24,62,0.08);
-    box-shadow:
-        0 8px 28px rgba(6,24,62,0.10),
-        inset 0 1px 0 rgba(255,255,255,0.6);
-}
-
 /* Top reflection */
 .nav-menu::before {
     content: "";
@@ -152,10 +119,6 @@ body.nav-scrolled .nav-menu {
     transition: opacity 0.4s ease;
 }
 
-body.nav-scrolled .nav-menu::before {
-    opacity: 0;
-}
-
 /* Soft blue glow */
 .nav-menu::after {
     content: "";
@@ -167,14 +130,12 @@ body.nav-scrolled .nav-menu::before {
     transition: opacity 0.4s ease;
 }
 
-body.nav-scrolled .nav-menu::after {
-    opacity: 0.5;
-}
-
 .nav-menu a {
     position: relative;
     display: inline-block;
     color: var(--white-90);
+    mix-blend-mode: difference;
+    transition: color 0.3s ease;
     font-size: 15px;
     font-weight: 400;
     letter-spacing: 0.02em;
@@ -190,28 +151,19 @@ body.nav-scrolled .nav-menu::after {
     color: var(--white);
 }
 
-/* Light-background state — navy text */
-body.nav-scrolled .nav-menu a {
-    color: rgba(6, 24, 62, 0.65);
-}
-
-body.nav-scrolled .nav-menu a:hover,
-body.nav-scrolled .nav-menu a.active {
-    color: var(--navy);
-}
-
 .nav-indicator {
     position: absolute;
+    /* Anchored to left edge of nav pill — GSAP sets x + width */
+    left: 0;
     bottom: 10px;
+    width: 0;           /* GSAP sets this on load */
     height: 2px;
     background: white;
     border-radius: var(--radius-pill);
     pointer-events: none;
-    transition: background 0.4s ease; /* position managed by GSAP */
-}
-
-body.nav-scrolled .nav-indicator {
-    background: var(--navy);
+    will-change: transform, width;
+    /* Only background transitions via CSS — x/width owned by GSAP */
+    transition: background 0.48s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 /* =========================================
@@ -246,10 +198,6 @@ body.nav-scrolled .nav-indicator {
 .nav-contact:hover {
     transform: translateY(-1px);
     box-shadow: 0 18px 40px rgba(0,0,0,0.22);
-}
-
-body.nav-scrolled .nav-contact {
-    box-shadow: 0 10px 26px rgba(6,24,62,0.14);
 }
 
 .nav-contact img {
@@ -352,13 +300,6 @@ body.nav-scrolled .nav-contact {
     }
 
     /* Drawer is always dark navy glass, regardless of scroll state */
-    body.nav-scrolled .nav-menu {
-        background: rgba(6, 24, 62, 0.92);
-        border-color: transparent;
-        border-bottom: 1px solid var(--white-12);
-        box-shadow: none;
-    }
-
     .nav-menu a {
         font-size: 22px;
         font-weight: 300;
@@ -370,13 +311,7 @@ body.nav-scrolled .nav-contact {
     }
 
     .nav-menu a:hover,
-    .nav-menu a.active,
-    body.nav-scrolled .nav-menu a {
-        color: var(--white);
-    }
-
-    body.nav-scrolled .nav-menu a:hover,
-    body.nav-scrolled .nav-menu a.active {
+    .nav-menu a.active {
         color: var(--white);
     }
 

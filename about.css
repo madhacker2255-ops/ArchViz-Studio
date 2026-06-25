@@ -6,11 +6,31 @@
 /* ── Section wrapper ─────────────────────── */
 
 .about-section {
-    padding: var(--section-pad-v) var(--section-pad-h);
+    padding: var(--section-pad-v) 0;
     background: var(--page-bg);
     display: flex;
     flex-direction: column;
     gap: 28px;
+    align-items: stretch;
+}
+
+/* Inner content container — all direct children */
+.about-section > * {
+    width: 100%;
+    max-width: var(--content-max);
+    margin-left:  auto;
+    margin-right: auto;
+    padding-left:  var(--content-pad-h);
+    padding-right: var(--content-pad-h);
+}
+
+/* Cards are already full-width within the constrained column;
+   remove double padding from the card elements themselves */
+.about-bio-card,
+.about-skills-card,
+.about-process-card {
+    padding-left:  0;
+    padding-right: 0;
 }
 
 /* =========================================

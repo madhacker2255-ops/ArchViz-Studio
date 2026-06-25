@@ -4,16 +4,17 @@
 ========================================= */
 
 :root {
-    --page-bg:       #f5f4f1;   /* warm off-white from the design */
-    --navy:          #06183e;   /* deep navy — headings, featured card */
-    --navy-mid:      #0d2459;   /* slightly lighter navy */
-    --accent:        #2d5fc4;   /* clear blue — tags, CTA button */
-    --accent-light:  #d8e4ff;   /* light blue — tag chips */
-    --text-body:     #374151;   /* dark grey body text */
-    --text-muted:    #6b7280;   /* meta / caption */
+    --page-bg:       #f5f4f1;
+    --navy:          #06183e;
+    --navy-mid:      #0d2459;
+    --accent:        #2d5fc4;
+    --accent-light:  #d8e4ff;
+    --text-body:     #374151;
+    --text-muted:    #6b7280;
     --border:        rgba(6,24,62,0.10);
     --card-radius:   20px;
-    --section-pad-h: clamp(20px, 5vw, 80px);
+    /* section-pad-h now delegates to content-pad-h from main.css */
+    --section-pad-h: var(--content-pad-h);
     --section-pad-v: clamp(48px, 7vw, 96px);
 }
 
@@ -31,8 +32,17 @@ body {
 ========================================= */
 
 .projects-section {
-    padding: var(--section-pad-v) var(--section-pad-h);
+    padding: var(--section-pad-v) 0;
     background: var(--page-bg);
+}
+
+/* Inner content container */
+.projects-section > * {
+    max-width: var(--content-max);
+    margin-left:  auto;
+    margin-right: auto;
+    padding-left:  var(--content-pad-h);
+    padding-right: var(--content-pad-h);
 }
 
 /* ── Section Header ────────────────────── */
@@ -374,13 +384,15 @@ body {
 ========================================= */
 
 .cta-banner {
-    margin: 0 var(--section-pad-h) var(--section-pad-v);
-    padding: clamp(40px, 6vw, 72px) clamp(32px, 5vw, 72px);
+    max-width: var(--content-max);
+    margin-left:  auto;
+    margin-right: auto;
+    margin-bottom: var(--section-pad-v);
+    padding: clamp(40px, 6vw, 72px) clamp(32px, 5vw, 64px);
     background: var(--navy);
     border-radius: 24px;
     position: relative;
     overflow: hidden;
-
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -458,12 +470,23 @@ body {
     align-items: center;
     justify-content: space-between;
     gap: 24px;
-
-    padding: 28px var(--section-pad-h);
+    padding: 28px var(--content-pad-h);
+    max-width: var(--content-max);
+    margin-left:  auto;
+    margin-right: auto;
     border-top: 1.5px solid var(--border);
     background: var(--page-bg);
-
     flex-wrap: wrap;
+}
+
+/* Full-width border line behind the constrained footer */
+.site-footer-wrap {
+    background: var(--page-bg);
+    border-top: 1.5px solid var(--border);
+}
+
+.site-footer-wrap .site-footer {
+    border-top: none;
 }
 
 .footer__left {
@@ -591,11 +614,12 @@ body {
 
     /* CTA banner stacks */
     .cta-banner {
-        margin: 0 16px var(--section-pad-v);
         flex-direction: column;
         align-items: flex-start;
         padding: 40px 28px;
         border-radius: 20px;
+        margin-left: 16px;
+        margin-right: 16px;
     }
 
     .cta-blueprint {
@@ -610,7 +634,7 @@ body {
         flex-direction: column;
         align-items: flex-start;
         gap: 20px;
-        padding: 24px var(--section-pad-h);
+        padding: 24px var(--content-pad-h);
     }
 
     .footer__links {
@@ -628,7 +652,8 @@ body {
     }
 
     .cta-banner {
-        margin: 0 12px clamp(40px, 8vw, 80px);
+        margin-left: 12px;
+        margin-right: 12px;
         padding: 32px 20px;
     }
 

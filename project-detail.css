@@ -301,7 +301,11 @@ body.is-loading {
     display: grid;
     grid-template-columns: 1.5fr 1fr;
     gap: 24px;
-    padding: clamp(36px, 5vw, 56px) var(--section-pad-h) 0;
+    padding: clamp(36px, 5vw, 56px) var(--content-pad-h) 0;
+    max-width: var(--content-max);
+    margin-left:  auto;
+    margin-right: auto;
+    width: 100%;
 }
 
 .pd-overview__card,
@@ -410,7 +414,11 @@ body.is-loading {
 ========================================= */
 
 .pd-gallery {
-    padding: clamp(36px, 5vw, 56px) var(--section-pad-h) 0;
+    padding: clamp(36px, 5vw, 56px) var(--content-pad-h) 0;
+    max-width: var(--content-max);
+    margin-left:  auto;
+    margin-right: auto;
+    width: 100%;
 }
 
 .pd-gallery__title {
@@ -465,7 +473,11 @@ body.is-loading {
 ========================================= */
 
 .pd-process {
-    padding: clamp(36px, 5vw, 56px) var(--section-pad-h) 0;
+    padding: clamp(36px, 5vw, 56px) var(--content-pad-h) 0;
+    max-width: var(--content-max);
+    margin-left:  auto;
+    margin-right: auto;
+    width: 100%;
 }
 
 .pd-process__steps {
@@ -556,7 +568,11 @@ body.is-loading {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 24px;
-    padding: clamp(36px, 5vw, 56px) var(--section-pad-h) 0;
+    padding: clamp(36px, 5vw, 56px) var(--content-pad-h) 0;
+    max-width: var(--content-max);
+    margin-left:  auto;
+    margin-right: auto;
+    width: 100%;
 }
 
 .pd-tech__grid {
@@ -709,8 +725,10 @@ body.is-loading {
     grid-template-columns: 1fr auto 1fr;
     align-items: center;
     gap: 16px;
-    margin: clamp(36px, 5vw, 56px) var(--section-pad-h) 0;
+    margin: clamp(36px, 5vw, 56px) auto 0;
     padding: 18px 20px;
+    max-width: var(--content-max);
+    width: calc(100% - var(--content-pad-h) * 2);
     background: var(--white);
     border: 1.5px solid var(--border);
     border-radius: var(--card-radius);
@@ -850,8 +868,8 @@ body.is-loading {
     .pd-gallery,
     .pd-process,
     .pd-tech {
-        padding-left: 20px;
-        padding-right: 20px;
+        padding-left: 16px;
+        padding-right: 16px;
     }
 
     .pd-feature-grid {
@@ -883,8 +901,7 @@ body.is-loading {
     .pd-projnav {
         grid-template-columns: 1fr;
         gap: 14px;
-        margin-left: 16px;
-        margin-right: 16px;
+        width: calc(100% - 32px);
     }
 
     .pd-projnav__side--next {

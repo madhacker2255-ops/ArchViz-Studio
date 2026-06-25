@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact — Archviz Studio</title>
+
+    <link rel="stylesheet" href="main.css">
+    <link rel="stylesheet" href="nav.css">
+    <link rel="stylesheet" href="projects.css">
+    <link rel="stylesheet" href="contact.css">
+    <link rel="stylesheet" href="animations.css">
+</head>
+
+<body class="page-enter">
+
+    <div id="site-content">
+
+        <!-- Logo -->
+        <a href="hero.html" class="nav-logo" aria-label="Archviz Studio Home">
+            <img src="assets/images/logo.png" alt="Archviz Studio Logo">
+        </a>
+
+        <!-- Hamburger (mobile) -->
+        <button class="nav-hamburger" aria-label="Open navigation menu" aria-expanded="false" aria-controls="nav-menu">
+            <span></span><span></span><span></span>
+        </button>
+
+        <!-- Navigation -->
+        <nav id="nav-menu" class="nav-menu" role="navigation" aria-label="Main navigation">
+            <a href="hero.html#Home">Home</a>
+            <a href="hero.html#Projects">Projects</a>
+            <a href="hero.html#services">Services</a>
+            <a href="hero.html#about">About</a>
+            <a href="contact.html" class="active">Contact</a>
+            <span class="nav-indicator" aria-hidden="true"></span>
+        </nav>
+
+        <div class="nav-overlay" aria-hidden="true"></div>
+
+        <!-- Start a Project nav-CTA -->
+        <a href="#ct-form" class="nav-contact nav-contact--cta" aria-label="Jump to contact form">
+            <span class="nav-contact__icon" aria-hidden="true">
+                <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M2 16L16 2M16 2H7M16 2v9" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </span>
+            <span>Start a Project</span>
+        </a>
+
+        <!-- =============================================
+             CONTACT HERO
+        ============================================= -->
+        <section class="ct-hero" aria-label="Contact hero">
+            <img src="assets/images/hero.jpg" alt="Luxury modern residence at dusk">
+            <div class="ct-hero__overlay" aria-hidden="true"></div>
+
+            <div class="ct-hero__content">
+                <p class="ct-hero__eyebrow">Contact Us</p>
+                <h1 class="ct-hero__title">Let's Build<br>Something<br>Iconic.</h1>
+                <p class="ct-hero__desc">
+                    Have a project in mind? We'd love to hear about it.<br>
+                    Tell us about your ideas and we'll help you<br>
+                    bring them to life.
+                </p>
+                <div class="ct-hero__badge">
+                    <div class="ct-hero__badge-icon" aria-hidden="true">
+                        <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M2 14L14 2M14 2H6M14 2v8" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                    </div>
+                    <span>We typically reply within 24 hours.</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- =============================================
+             CONTACT BODY
+        ============================================= -->
+        <section class="ct-body" id="ct-form" aria-label="Contact form and information">
+
+            <!-- FORM PANEL -->
+            <div class="ct-form-panel">
+                <h2 class="ct-panel-title">Send Us a Message</h2>
+                <p class="ct-panel-desc">Fill out the form below and we'll get back to you soon.</p>
+
+                <form class="ct-form" id="contactForm" novalidate>
+
+                    <div class="ct-form__row">
+                        <div class="ct-field">
+                            <input type="text" id="cf-name" name="name" placeholder="Full Name" autocomplete="name" required>
+                        </div>
+                        <div class="ct-field">
+                            <input type="email" id="cf-email" name="email" placeholder="Email Address" autocomplete="email" required>
+                        </div>
+                    </div>
+
+                    <div class="ct-form__row">
+                        <div class="ct-field">
+                            <input type="tel" id="cf-phone" name="phone" placeholder="Phone Number" autocomplete="tel">
+                        </div>
+                        <div class="ct-field">
+                            <input type="text" id="cf-company" name="company" placeholder="Company (Optional)" autocomplete="organization">
+                        </div>
+                    </div>
+
+                    <div class="ct-field ct-field--select">
+                        <select id="cf-type" name="project_type" aria-label="Project Type">
+                            <option value="" disabled selected hidden>Project Type</option>
+                            <option value="exterior">Exterior Visualization</option>
+                            <option value="interior">Interior Visualization</option>
+                            <option value="walkthrough">3D Walkthrough / Animation</option>
+                            <option value="commercial">Commercial Project</option>
+                            <option value="residential">Residential Project</option>
+                            <option value="other">Other</option>
+                        </select>
+                        <div class="ct-field__chevron" aria-hidden="true">
+                            <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 5l5 5 5-5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                        </div>
+                    </div>
+
+                    <div class="ct-field ct-field--textarea">
+                        <textarea id="cf-message" name="message" rows="5" placeholder="Tell us about your project" required></textarea>
+                        <p class="ct-field__hint">Share details about your project, requirements, timeline, and any specific needs.</p>
+                    </div>
+
+                    <label class="ct-checkbox" for="cf-agree">
+                        <input type="checkbox" id="cf-agree" name="agree" required>
+                        <span class="ct-checkbox__box" aria-hidden="true">
+                            <svg class="ct-checkbox__tick" width="10" height="8" viewBox="0 0 10 8" fill="none"><path d="M1 4l3 3L9 1" stroke="white" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                        </span>
+                        <span>I agree to the <a href="#" class="ct-link">Privacy Policy</a> and <a href="#" class="ct-link">Terms of Service</a>.</span>
+                    </label>
+
+                    <button type="submit" class="ct-submit">
+                        <span>Send Message</span>
+                        <span class="ct-submit__icon" aria-hidden="true">
+                            <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M2 14L14 2M14 2H6M14 2v8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                        </span>
+                    </button>
+
+                    <!-- Success state (hidden until form sends) -->
+                    <div class="ct-success" id="ctSuccess" hidden role="status" aria-live="polite">
+                        <div class="ct-success__icon" aria-hidden="true">
+                            <svg width="22" height="22" viewBox="0 0 22 22" fill="none"><circle cx="11" cy="11" r="9" stroke="currentColor" stroke-width="1.5" fill="none"/><path d="M7 11.5l3 3 5-6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                        </div>
+                        <div>
+                            <strong>Message sent!</strong>
+                            <p>Thank you — we'll get back to you within 24 hours.</p>
+                        </div>
+                    </div>
+
+                </form>
+            </div>
+
+            <!-- INFO PANEL -->
+            <div class="ct-info-panel">
+                <h2 class="ct-panel-title">Get in Touch</h2>
+                <p class="ct-panel-desc">Reach out to us through any of the channels below.</p>
+
+                <ul class="ct-channels" role="list">
+
+                    <li class="ct-channel" role="listitem">
+                        <a href="mailto:hello@samarchviz.com" class="ct-channel__link">
+                            <div class="ct-channel__icon">
+                                <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><rect x="2" y="4" width="16" height="13" rx="2" stroke="currentColor" stroke-width="1.4" fill="none"/><path d="M2 7l8 5 8-5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>
+                            </div>
+                            <div class="ct-channel__text">
+                                <strong>Email</strong>
+                                <span>hello@samarchviz.com</span>
+                            </div>
+                        </a>
+                    </li>
+
+                    <li class="ct-channel" role="listitem">
+                        <a href="tel:+919876543210" class="ct-channel__link">
+                            <div class="ct-channel__icon">
+                                <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M5.5 3c0 0-1.5.5-2.5 2S2.5 9 5 12s5 6 7 6.5 3.5-.5 4.5-1.5-.5-2.5-1.5-3S13 12 12.5 12s-1.5 1-2 1-3-2-4-3-1.5-2.5-1-3 1-1.5 1-2-.5-2.5-1-2.5z" stroke="currentColor" stroke-width="1.4" fill="none" stroke-linejoin="round"/></svg>
+                            </div>
+                            <div class="ct-channel__text">
+                                <strong>Phone</strong>
+                                <span>+91 98765 43210</span>
+                            </div>
+                        </a>
+                    </li>
+
+                    <li class="ct-channel" role="listitem">
+                        <a href="https://wa.me/919876543210" target="_blank" rel="noopener noreferrer" class="ct-channel__link">
+                            <div class="ct-channel__icon">
+                                <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="8" stroke="currentColor" stroke-width="1.4" fill="none"/><path d="M6.5 8c0 0 .5.5 1 1.5s1.5 2.5 2.5 3 1.5.3 2 0l.5-.5-1.5-1.5c-.2-.2-.5-.2-.7 0L9.8 11c-.3-.3-1.5-1.5-1.8-2l.5-.5c.2-.2.2-.5 0-.7L7 6.5c-.3-.3-.7-.2-1 0-.5.5-.5 1.5 0 2z" stroke="currentColor" stroke-width="1.2" fill="none" stroke-linejoin="round"/></svg>
+                            </div>
+                            <div class="ct-channel__text">
+                                <strong>WhatsApp</strong>
+                                <span>+91 98765 43210</span>
+                            </div>
+                        </a>
+                    </li>
+
+                    <li class="ct-channel" role="listitem">
+                        <div class="ct-channel__link ct-channel__link--static">
+                            <div class="ct-channel__icon">
+                                <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="8" stroke="currentColor" stroke-width="1.4" fill="none"/><path d="M10 6v4l2.5 2.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                            </div>
+                            <div class="ct-channel__text">
+                                <strong>Studio Hours</strong>
+                                <span>Mon – Sat : 9:00 AM – 7:00 PM IST</span>
+                            </div>
+                        </div>
+                    </li>
+
+                </ul>
+
+                <div class="ct-follow">
+                    <h3 class="ct-follow__title">Follow Us</h3>
+                    <div class="ct-socials" role="list">
+
+                        <a href="https://instagram.com/yourusername" target="_blank" rel="noopener noreferrer" class="ct-social" role="listitem" aria-label="Instagram">
+                            <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><rect x="2" y="2" width="14" height="14" rx="4" stroke="currentColor" stroke-width="1.5" fill="none"/><circle cx="9" cy="9" r="3.5" stroke="currentColor" stroke-width="1.5" fill="none"/><circle cx="13.5" cy="4.5" r="0.8" fill="currentColor"/></svg>
+                        </a>
+
+                        <a href="https://linkedin.com/in/yourusername" target="_blank" rel="noopener noreferrer" class="ct-social" role="listitem" aria-label="LinkedIn">
+                            <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><rect x="2" y="2" width="14" height="14" rx="3" stroke="currentColor" stroke-width="1.5" fill="none"/><path d="M6 8v5M6 6v0" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><path d="M9 13v-2.5a2 2 0 0 1 4 0V13" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                        </a>
+
+                        <a href="https://behance.net/yourusername" target="_blank" rel="noopener noreferrer" class="ct-social" role="listitem" aria-label="Behance">
+                            <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M3 6h5.5c1.1 0 1.8.7 1.8 1.5S9.6 9 8.5 9H3V6z" stroke="currentColor" stroke-width="1.3" fill="none" stroke-linejoin="round"/><path d="M3 9h5.8c1.3 0 2.2.8 2.2 2S10.1 13 8.8 13H3V9z" stroke="currentColor" stroke-width="1.3" fill="none" stroke-linejoin="round"/><path d="M13 7h3.5M13 11c0 1.1.9 2 2 2a2 2 0 0 0 1.7-1" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg>
+                        </a>
+
+                        <a href="https://upwork.com/yourusername" target="_blank" rel="noopener noreferrer" class="ct-social" role="listitem" aria-label="Upwork">
+                            <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M2 11c0 0 2-5 4-5s2.5 3.5 3 5c.3-2.5 1-5.5 3-5.5s3 3.5 3 5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" fill="none"/><path d="M15 11v1.5a1.5 1.5 0 0 0 1.5-1.5H15z" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" fill="none"/></svg>
+                        </a>
+
+                    </div>
+                </div>
+            </div>
+
+        </section>
+
+        <!-- FOOTER -->
+        <footer class="site-footer" role="contentinfo">
+            <div class="footer__left">
+                <img src="assets/images/logo.png" alt="Archviz Studio" class="footer__logo">
+                <p class="footer__copy">&copy; 2024 Archviz Studio. All rights reserved.</p>
+            </div>
+            <nav class="footer__links" aria-label="Footer navigation">
+                <a href="https://instagram.com/yourusername"  target="_blank" rel="noopener noreferrer">Instagram</a>
+                <a href="https://linkedin.com/in/yourusername" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+                <a href="https://behance.net/yourusername"    target="_blank" rel="noopener noreferrer">Behance</a>
+                <a href="https://upwork.com/yourusername"    target="_blank" rel="noopener noreferrer">Upwork</a>
+                <a href="#" aria-label="Privacy Policy">Privacy Policy</a>
+            </nav>
+        </footer>
+
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.7/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.7/ScrollTrigger.min.js"></script>
+    <script src="script.js"></script>
+    <script src="contact.js"></script>
+    <script src="animations.js"></script>
+</body>
+</html>

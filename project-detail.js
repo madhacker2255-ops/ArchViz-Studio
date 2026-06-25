@@ -1,131 +1,162 @@
 /* =========================================
-   PROJECT DETAIL PAGE — SCRIPT
-   Handles: loader sequence, before/after slider
+   PROJECT DETAIL PAGE SCRIPT
+   Drives the page loader: tracks real image
+   load progress, animates the bar to 100%,
+   then slides the loader out and reveals
+   the page content.
 ========================================= */
 
-// =========================================
-//  LOADER SEQUENCE
-// =========================================
+(function () {
 
-(function initLoader() {
-    const loader   = document.getElementById("loader");
-    const barFill  = document.querySelector(".loader__bar-fill");
-    const pctLabel = document.querySelector(".loader__pct");
-    const body     = document.body;
-    const content  = document.getElementById("site-content");
+    // ── Loader elements ──────────────────────
+    const loader  = document.getElementById("loader");
+    const barFill = document.querySelector(".loader__bar-fill");
+    const pctEl   = document.querySelector(".loader__pct");
+    const letters = document.querySelectorAll(".loader__letter");
 
-    if (!loader) return;
+    if (!loader) return;   // safety — if no loader on page, bail
 
-    const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    // ── Collect images to track ───────────────
+    // Only track images that are in the viewport-critical areas (hero + gallery).
+    // Logo / UI icons are excluded so they don't skew progress.
+    const trackedImgs = Array.from(
+        document.querySelectorAll(".pd-hero img, .pd-gallery img, .pd-process img")
+    );
 
-    if (reduceMotion) {
-        // Skip the show — reveal immediately
-        loader.style.display = "none";
-        body.classList.remove("is-loading");
-        content.classList.add("is-revealed");
-        return;
-    }
+    // ── State ────────────────────────────────
+    let loadedCount  = 0;
+    let displayPct   = 0;      // currently shown percentage (animated)
+    let targetPct    = 5;      // where we're animating toward
+    let rafId        = null;
+    let loaderDone   = false;
 
-    // Animate a believable, slightly uneven progress fill
-    let progress = 0;
-    const target = 100;
-    const duration = 1500; // ms, matches letter stagger + buffer
-    const startTime = performance.now();
-
-    function tick(now) {
-        const elapsed = now - startTime;
-        const t = Math.min(elapsed / duration, 1);
-
-        // Ease-out cubic for a natural "settling" feel
-        const eased = 1 - Math.pow(1 - t, 3);
-        progress = Math.round(eased * target);
-
-        if (barFill)  barFill.style.width = progress + "%";
-        if (pctLabel) pctLabel.textContent = progress + "%";
-
-        if (t < 1) {
-            requestAnimationFrame(tick);
+    // ── Animate displayed percentage ──────────
+    function tickCounter() {
+        if (displayPct < targetPct) {
+            displayPct = Math.min(displayPct + 1, targetPct);
+            if (barFill) barFill.style.width = displayPct + "%";
+            if (pctEl)   pctEl.textContent   = displayPct + "%";
+        }
+        if (displayPct < 100 || targetPct < 100) {
+            rafId = requestAnimationFrame(tickCounter);
         } else {
-            finishLoading();
+            // Reached 100% — kick off exit sequence
+            cancelAnimationFrame(rafId);
+            finishLoader();
         }
     }
 
-    requestAnimationFrame(tick);
+    // ── Per-image callback ───────────────────
+    function onImageLoad() {
+        if (loaderDone) return;
+        loadedCount++;
+        const total = trackedImgs.length || 1;
+        // Reserve 0-90% for real image load; 90-100% filled in finishLoader
+        targetPct = Math.min(90, Math.round((loadedCount / total) * 90));
+    }
 
-    function finishLoading() {
-        // Brief hold at 100% before exit
+    // ── Letter animation (stagger in) ─────────
+    function animateLetters() {
+        if (!letters.length) return;
+        letters.forEach((l, i) => {
+            setTimeout(() => {
+                l.style.transition = "opacity 0.35s ease, transform 0.35s ease";
+                l.style.opacity    = "1";
+                l.style.transform  = "translateY(0)";
+            }, i * 42);
+        });
+    }
+
+    // ── Loader exit ──────────────────────────
+    function finishLoader() {
+        if (loaderDone) return;
+        loaderDone = true;
+
+        // Brief pause at 100% before sliding out
         setTimeout(() => {
-            loader.classList.add("is-done");
-            body.classList.remove("is-loading");
-            content.classList.add("is-revealed");
+            loader.style.transition = "opacity 0.55s cubic-bezier(0.4,0,0.2,1), transform 0.65s cubic-bezier(0.4,0,0.2,1)";
+            loader.style.opacity    = "0";
+            loader.style.transform  = "translateY(-8px)";
 
-            // Remove loader from DOM after its exit transition completes
             setTimeout(() => {
                 loader.style.display = "none";
-            }, 800);
-        }, 280);
-    }
-})();
+                loader.setAttribute("aria-hidden", "true");
+                document.body.classList.remove("is-loading");
+                document.getElementById("site-content")?.classList.add("is-revealed");
 
-// =========================================
-//  BEFORE / AFTER COMPARISON SLIDER
-// =========================================
-
-(function initCompareSlider() {
-    const compare = document.getElementById("pdCompare");
-    const before  = document.getElementById("pdCompareBefore");
-    const handle  = document.getElementById("pdCompareHandle");
-
-    if (!compare || !before || !handle) return;
-
-    let isDragging = false;
-
-    function setPosition(percent) {
-        const clamped = Math.max(0, Math.min(100, percent));
-        before.style.clipPath = `inset(0 ${100 - clamped}% 0 0)`;
-        handle.style.left = clamped + "%";
-        handle.setAttribute("aria-valuenow", Math.round(clamped));
+                // Trigger page entrance if GSAP is available
+                if (typeof gsap !== "undefined") {
+                    triggerEntrance();
+                }
+            }, 680);
+        }, 260);
     }
 
-    function getPercentFromEvent(clientX) {
-        const rect = compare.getBoundingClientRect();
-        const x = clientX - rect.left;
-        return (x / rect.width) * 100;
+    // ── Page entrance animation ───────────────
+    function triggerEntrance() {
+        const tl = gsap.timeline();
+
+        // Hero image
+        tl.from(".pd-hero img", {
+            scale: 1.05, opacity: 0, duration: 1.1, ease: "power3.out"
+        }, 0)
+        // Back link + meta
+        .from([".pd-back", ".pd-meta"], {
+            y: 18, opacity: 0, duration: 0.7, stagger: 0.1, ease: "power3.out"
+        }, 0.2)
+        // Title
+        .from(".pd-title", {
+            y: 28, opacity: 0, duration: 0.8, ease: "power3.out"
+        }, 0.3)
+        // Description
+        .from(".pd-hero__desc", {
+            y: 16, opacity: 0, duration: 0.7, ease: "power3.out"
+        }, 0.5);
     }
 
-    function onMove(clientX) {
-        setPosition(getPercentFromEvent(clientX));
-    }
+    // ── Bootstrap ────────────────────────────
 
-    // Mouse events
-    handle.addEventListener("mousedown", () => { isDragging = true; });
-    compare.addEventListener("mousedown", (e) => {
-        isDragging = true;
-        onMove(e.clientX);
-    });
-    window.addEventListener("mousemove", (e) => {
-        if (isDragging) onMove(e.clientX);
-    });
-    window.addEventListener("mouseup", () => { isDragging = false; });
-
-    // Touch events
-    handle.addEventListener("touchstart", () => { isDragging = true; }, { passive: true });
-    compare.addEventListener("touchstart", (e) => {
-        isDragging = true;
-        onMove(e.touches[0].clientX);
-    }, { passive: true });
-    window.addEventListener("touchmove", (e) => {
-        if (isDragging && e.touches[0]) onMove(e.touches[0].clientX);
-    }, { passive: true });
-    window.addEventListener("touchend", () => { isDragging = false; });
-
-    // Keyboard accessibility
-    handle.addEventListener("keydown", (e) => {
-        const current = parseFloat(handle.style.left) || 50;
-        if (e.key === "ArrowLeft")  { setPosition(current - 5); e.preventDefault(); }
-        if (e.key === "ArrowRight") { setPosition(current + 5); e.preventDefault(); }
+    // Set initial letter styles (hidden, ready to animate in)
+    letters.forEach(l => {
+        l.style.opacity   = "0";
+        l.style.transform = "translateY(10px)";
     });
 
-    // Initialize at 50%
-    setPosition(50);
+    // Start counter tick immediately
+    rafId = requestAnimationFrame(tickCounter);
+
+    // Animate letters in after a beat
+    setTimeout(animateLetters, 120);
+
+    // Watch each tracked image
+    if (trackedImgs.length === 0) {
+        // No images to track — just run a timed progress
+        const fakeTimer = setInterval(() => {
+            targetPct = Math.min(targetPct + 12, 90);
+            if (targetPct >= 90) clearInterval(fakeTimer);
+        }, 120);
+    } else {
+        trackedImgs.forEach(img => {
+            if (img.complete && img.naturalWidth > 0) {
+                // Already cached/loaded
+                onImageLoad();
+            } else {
+                img.addEventListener("load",  onImageLoad, { once: true });
+                img.addEventListener("error", onImageLoad, { once: true }); // count errors too
+            }
+        });
+    }
+
+    // Hard cap: no matter what, finish loading after 4 seconds
+    // (handles broken images, slow networks, blocked assets)
+    const hardCapTimer = setTimeout(() => {
+        targetPct = 100;
+    }, 4000);
+
+    // window.load fills bar to 100% naturally once everything is done
+    window.addEventListener("load", () => {
+        clearTimeout(hardCapTimer);
+        targetPct = 100;
+    });
+
 })();

@@ -1,0 +1,239 @@
+/* =========================================
+   CUSTOMIZE SECTION
+   Canvas-based image display.
+   12 images (color×sofa×light) — all empty
+   until you drop in your renders.
+========================================= */
+
+.customize-section {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    min-height: 560px;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+}
+
+/* ── Canvas — fills section, shows transitions ── */
+.cst-canvas {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+    display: block;
+}
+
+/* ── Hidden image pool — preloaded, never shown directly ── */
+.cst-images {
+    position: absolute;
+    width: 1px; height: 1px;
+    overflow: hidden;
+    opacity: 0;
+    pointer-events: none;
+    z-index: -1;
+}
+
+.cst-images img {
+    position: absolute;
+    width: 1px; height: 1px;
+}
+
+/* ── Placeholder shown while all images empty ── */
+.cst-bg__placeholder {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, #0a1628 0%, #1a2d54 60%, #0d1f40 100%);
+    z-index: 0;
+    pointer-events: none;
+}
+
+/* Hide placeholder once canvas has drawn something */
+.cst-canvas.has-image ~ .cst-bg__placeholder {
+    display: none;
+}
+
+/* ── Left-side text gradient ── */
+.cst-gradient {
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+    pointer-events: none;
+    background: linear-gradient(
+        90deg,
+        rgba(4, 12, 36, 0.88) 0%,
+        rgba(4, 12, 36, 0.58) 38%,
+        rgba(4, 12, 36, 0.10) 65%,
+        transparent 100%
+    );
+}
+
+/* ── Content — same padding as ct-hero__content ── */
+.cst-content {
+    position: relative;
+    z-index: 10;
+    padding-left: clamp(24px, 6vw, 96px);
+    max-width: 520px;
+}
+
+/* ── Eyebrow — exact match .ct-hero__eyebrow ── */
+.cst-eyebrow {
+    font-size: 0.74rem;
+    font-weight: 400;
+    letter-spacing: 0.12em;
+    color: rgba(255, 255, 255, 0.60);
+    text-transform: uppercase;
+    margin-bottom: 14px;
+}
+
+/* ── Title — span light / strong bold ── */
+.cst-title {
+    font-size: clamp(2.8rem, 6.5vw, 5.5rem);
+    line-height: 1.0;
+    letter-spacing: -0.02em;
+    margin-bottom: 0;
+    display: block;
+}
+.cst-title span   { display: block; font-weight: 300; color: #ffffff; }
+.cst-title strong { display: block; font-weight: 600; color: #ffffff; }
+
+/* ── Divider line ── */
+.cst-line {
+    width: 48px;
+    height: 2px;
+    background: rgba(255, 255, 255, 0.25);
+    border-radius: 999px;
+    margin: 20px 0;
+}
+
+/* ── Description — exact match .ct-hero__desc ── */
+.cst-desc {
+    font-size: clamp(0.92rem, 1.2vw, 1.05rem);
+    font-weight: 300;
+    line-height: 1.65;
+    color: rgba(255, 255, 255, 0.80);
+    margin-bottom: 36px;
+    max-width: 320px;
+}
+
+/* ── Control groups ── */
+.cst-controls {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.cst-group {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 999px;
+    padding: 5px 5px 5px 16px;
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    width: fit-content;
+}
+
+.cst-group__label {
+    font-size: 0.74rem;
+    font-weight: 400;
+    letter-spacing: 0.08em;
+    color: rgba(255, 255, 255, 0.35);
+    white-space: nowrap;
+    margin-right: 4px;
+    text-transform: uppercase;
+}
+
+/* ── Buttons ── */
+.cst-btn {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    padding: 5px 14px 5px 5px;
+    border-radius: 999px;
+    border: 1.5px solid transparent;
+    background: transparent;
+    cursor: pointer;
+    transition: background 0.2s ease, border-color 0.2s ease, transform 0.15s ease;
+    outline: none;
+    color: rgba(255,255,255,0.50);
+    font-size: 0.74rem;
+    font-weight: 400;
+    font-family: "Chillax", system-ui, sans-serif;
+    letter-spacing: 0.06em;
+    white-space: nowrap;
+    text-transform: uppercase;
+}
+.cst-btn:hover {
+    background: rgba(255,255,255,0.08);
+    color: rgba(255,255,255,0.85);
+    transform: scale(1.03);
+}
+.cst-btn.is-active {
+    background: rgba(255,255,255,0.12);
+    border-color: rgba(255,255,255,0.28);
+    color: #ffffff;
+}
+
+.cst-btn__swatch {
+    width: 26px; height: 26px;
+    border-radius: 50%;
+    flex-shrink: 0;
+    display: block;
+    box-shadow: inset 0 -2px 4px rgba(0,0,0,0.25),
+                0 0 0 1.5px rgba(255,255,255,0.12);
+    transition: box-shadow 0.2s ease;
+}
+.cst-btn.is-active .cst-btn__swatch {
+    box-shadow: inset 0 -2px 4px rgba(0,0,0,0.25),
+                0 0 0 2px #ffffff;
+}
+
+/* ── Status ── */
+.cst-status {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 24px;
+    font-size: 0.74rem;
+    font-weight: 400;
+    letter-spacing: 0.10em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.30);
+}
+.cst-status__dot {
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.40);
+    flex-shrink: 0;
+}
+
+/* ── Responsive ── */
+@media (max-width: 768px) {
+    .customize-section {
+        align-items: flex-end;
+        padding-bottom: 48px;
+    }
+    .cst-content {
+        padding-left: 24px;
+        padding-right: 24px;
+        max-width: 100%;
+    }
+    .cst-gradient {
+        background: linear-gradient(
+            0deg,
+            rgba(4,12,36,0.95) 0%,
+            rgba(4,12,36,0.65) 50%,
+            transparent 100%
+        );
+    }
+    .cst-group { flex-wrap: wrap; border-radius: 16px; padding: 10px 12px; }
+    .cst-desc  { max-width: 100%; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .cst-btn { transition: none; }
+}

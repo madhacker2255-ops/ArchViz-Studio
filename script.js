@@ -4,6 +4,10 @@
             mobile hamburger, scroll lock
 ========================================= */
 
+// Prevent browser restoring last scroll position on load
+history.scrollRestoration = "manual";
+window.scrollTo(0, 0);
+
 // ── Elements ──────────────────────────────
 
 const sections   = document.querySelectorAll("section[id]");
@@ -23,86 +27,143 @@ function isDesktop() {
 //  NAV INDICATOR (desktop only)
 // =========================================
 
-function moveIndicator(target) {
+// ── Nav indicator — liquid stretch animation ──
+// Measures link position relative to nav pill,
+// uses a two-stage ease: fast stretch then snap.
+
+function getIndicatorTarget(link) {
+    const navRect  = navMenu.getBoundingClientRect();
+    const linkRect = link.getBoundingClientRect();
+    return {
+        left:  linkRect.left - navRect.left,
+        width: linkRect.width,
+    };
+}
+
+function moveIndicator(target, instant) {
     if (!isDesktop() || !indicator || !navMenu) return;
 
-    gsap.to(indicator, {
-        x: target.offsetLeft - 28,
-        width: target.offsetWidth,
-        duration: 0.8,
-        ease: "power4.inOut"
-    });
+    const { left, width } = getIndicatorTarget(target);
+
+    if (instant) {
+        // First paint — no animation, just place it
+        gsap.set(indicator, { x: left, width });
+        return;
+    }
+
+    // Stage 1: stretch leading edge toward target fast
+    // Stage 2: trailing edge catches up with elastic snap
+    const currentX = gsap.getProperty(indicator, "x");
+    const currentW = gsap.getProperty(indicator, "width");
+    const movingRight = left > currentX;
+
+    if (movingRight) {
+        // Stretch right edge first, then pull left edge
+        gsap.to(indicator, {
+            width: (left - currentX) + width,
+            duration: 0.3,
+            ease: "power3.out",
+        });
+        gsap.to(indicator, {
+            x: left,
+            width,
+            duration: 0.5,
+            ease: "power4.out",
+            delay: 0.18,
+        });
+    } else {
+        // Stretch left edge first, then pull right edge
+        gsap.to(indicator, {
+            x: left,
+            width: currentX + currentW - left,
+            duration: 0.3,
+            ease: "power3.out",
+        });
+        gsap.to(indicator, {
+            width,
+            duration: 0.5,
+            ease: "power4.out",
+            delay: 0.18,
+        });
+    }
 }
 
-// Set initial indicator on page load
-const homeLink = document.querySelector('.nav-menu a[href="#Home"]');
-if (homeLink) {
-    // Small delay so layout is settled
-    requestAnimationFrame(() => moveIndicator(homeLink));
+// ── Init indicator on load ───────────────
+// Works with both href="#Home" and href="hero.html#Home"
+function getActiveLink() {
+    return document.querySelector(".nav-menu a.active")
+        || document.querySelector(".nav-menu a");
 }
+
+function initIndicator() {
+    if (!isDesktop()) return;
+    const active = getActiveLink();
+    if (active) moveIndicator(active, true);
+}
+
+// Run after full paint so layout is settled
+if (document.readyState === "complete") {
+    requestAnimationFrame(initIndicator);
+} else {
+    window.addEventListener("load", () => requestAnimationFrame(initIndicator));
+}
+
+// Re-sync on resize
+window.addEventListener("resize", () => {
+    const active = getActiveLink();
+    if (active && isDesktop()) moveIndicator(active, true);
+});
 
 // =========================================
 //  SCROLL SPY
 // =========================================
 
-function updateActiveLink() {
-    let current = "";
-
-    sections.forEach(section => {
-        const sectionTop = section.offsetTop - 140;
-        if (window.scrollY >= sectionTop) {
-            current = section.id;
-        }
-    });
-
+function setActiveLink(id) {
     navLinks.forEach(link => {
+        const href = link.getAttribute("href") || "";
+        const hash = href.includes("#") ? href.split("#")[1] : "";
         link.classList.remove("active");
-
-        if (link.getAttribute("href") === "#" + current) {
+        if (hash === id) {
             link.classList.add("active");
             if (isDesktop()) moveIndicator(link);
         }
     });
 }
 
-window.addEventListener("scroll", updateActiveLink, { passive: true });
-
-// =========================================
-//  NAV LIGHT/DARK STATE
-//  Flips nav text from white -> navy once the
-//  user scrolls past the dark hero section, so
-//  it stays readable over light backgrounds.
-// =========================================
-
-(function initNavScrollState() {
-    const darkHero = document.querySelector(".hero, .pd-hero");
-
-    // Fallback threshold if no hero section exists on this page
-    const fallbackThreshold = 120;
-
-    function getThreshold() {
-        if (!darkHero) return fallbackThreshold;
-        const rect = darkHero.getBoundingClientRect();
-        // Switch once the hero's bottom edge nears the fixed nav bar
-        return rect.bottom + window.scrollY - 90;
-    }
-
-    let threshold = getThreshold();
-
-    function updateNavState() {
-        const shouldBeScrolled = window.scrollY > threshold;
-        document.body.classList.toggle("nav-scrolled", shouldBeScrolled);
-    }
-
-    window.addEventListener("scroll", updateNavState, { passive: true });
-    window.addEventListener("resize", () => {
-        threshold = getThreshold();
-        updateNavState();
+// IntersectionObserver — fires only when section crosses 50% of viewport.
+// No per-pixel scroll events, no jitter.
+const sectionObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            setActiveLink(entry.target.id);
+        }
     });
+}, {
+    // Fire when section top enters the middle band of the viewport.
+    // rootMargin clips the viewport to a narrow horizontal strip
+    // at 40% from top — so indicator only switches when a section
+    // top crosses that line, not on every pixel.
+    rootMargin: "-40% 0px -55% 0px",
+    threshold: 0,
+});
 
-    // Run once on load (handles page-refresh mid-scroll, and pages with no hero)
-    updateNavState();
-})();
+sections.forEach(section => sectionObserver.observe(section));
+
+// Set correct active on load without waiting for scroll
+window.addEventListener("load", () => {
+    // Find which section is most visible right now
+    let best = null, bestRatio = 0;
+    sections.forEach(section => {
+        const rect = section.getBoundingClientRect();
+        const visible = Math.min(rect.bottom, window.innerHeight) - Math.max(rect.top, 0);
+        const ratio = visible / section.offsetHeight;
+        if (ratio > bestRatio) { bestRatio = ratio; best = section; }
+    });
+    if (best) setActiveLink(best.id);
+});
+
+// =========================================
+// =========================================
 
 // =========================================
 //  MOBILE — HAMBURGER MENU
@@ -208,7 +269,7 @@ window.addEventListener("resize", () => {
             overlay.style.display = "none";
             document.body.style.overflow = "";
             // Re-sync indicator to active link
-            const active = document.querySelector(".nav-menu a.active") || homeLink;
+            const active = document.querySelector(".nav-menu a.active") || document.querySelector(".nav-menu a");
             if (active) moveIndicator(active);
         }
     }, 150);
@@ -224,24 +285,30 @@ window.addEventListener("DOMContentLoaded", () => {
 
     const tl = gsap.timeline({ delay: 0.1 });
 
+    // Hero image scale-in (safe on all breakpoints — no position conflict)
     tl.from(".hero > img", {
         scale: 1.06,
         duration: 1.6,
         ease: "power3.out"
-    })
-    .from(".hero-title span", {
-        y: 30,
-        opacity: 0,
-        duration: 0.8,
-        ease: "power3.out"
-    }, "-=1.0")
-    .from(".hero-title strong", {
-        y: 30,
-        opacity: 0,
-        duration: 0.8,
-        ease: "power3.out"
-    }, "-=0.55")
-    .from([".hero-line", ".hero-subtitle"], {
+    });
+
+    // On desktop: animate title from translateY since the CSS positions
+    // it with top+transform. On mobile: title is bottom-anchored with
+    // transform:none so we just fade it in — no y shift needed.
+    if (window.innerWidth > 768) {
+        tl.from(".hero-title span", {
+            y: 30, opacity: 0, duration: 0.8, ease: "power3.out"
+        }, "-=1.0")
+        .from(".hero-title strong", {
+            y: 30, opacity: 0, duration: 0.8, ease: "power3.out"
+        }, "-=0.55");
+    } else {
+        tl.from(".hero-title", {
+            opacity: 0, duration: 0.7, ease: "power3.out"
+        }, "-=1.0");
+    }
+
+    tl.from([".hero-line", ".hero-subtitle"], {
         y: 16,
         opacity: 0,
         duration: 0.7,
@@ -268,3 +335,27 @@ window.addEventListener("DOMContentLoaded", () => {
         ease: "power3.out"
     }, "-=0.4");
 });
+
+
+// =========================================
+//  NAV INDICATOR — hover preview
+//  Glides to hovered link, returns to active
+//  on mouse-leave. Feels magnetic/premium.
+// =========================================
+
+(function () {
+    const links = document.querySelectorAll(".nav-menu a");
+
+    links.forEach(link => {
+        link.addEventListener("mouseenter", () => {
+            if (!isDesktop()) return;
+            moveIndicator(link);
+        });
+    });
+
+    document.querySelector(".nav-menu")?.addEventListener("mouseleave", () => {
+        if (!isDesktop()) return;
+        const active = document.querySelector(".nav-menu a.active");
+        if (active) moveIndicator(active);
+    });
+})();

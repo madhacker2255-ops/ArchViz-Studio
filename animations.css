@@ -1,0 +1,163 @@
+/* =========================================
+   SCROLL ANIMATIONS — INITIAL STATES
+   Elements start hidden/offset; GSAP
+   ScrollTrigger animates them in on scroll.
+   Only active when JS has confirmed support.
+========================================= */
+
+/* Guard: only apply when JS confirms animation */
+.anim-ready .anim-fade-up {
+    opacity: 0;
+    transform: translateY(40px);
+}
+
+.anim-ready .anim-fade-down {
+    opacity: 0;
+    transform: translateY(-30px);
+}
+
+.anim-ready .anim-fade-left {
+    opacity: 0;
+    transform: translateX(50px);
+}
+
+.anim-ready .anim-fade-right {
+    opacity: 0;
+    transform: translateX(-50px);
+}
+
+.anim-ready .anim-scale-up {
+    opacity: 0;
+    transform: scale(0.88);
+}
+
+.anim-ready .anim-clip-up {
+    clip-path: inset(100% 0 0 0);
+    opacity: 0;
+}
+
+/* Section heading lines grow from 0 width */
+.anim-ready .proj-heading-line,
+.anim-ready .about-heading-line,
+.anim-ready .pd-hero__divider {
+    transform: scaleX(0);
+    transform-origin: left center;
+}
+
+/* Skill bars start at 0 — override the CSS animation */
+.anim-ready .about-bar__fill {
+    animation: none !important;
+    width: 0 !important;
+}
+
+/* Cards start invisible */
+.anim-ready .proj-card,
+.anim-ready .about-bio-card,
+.anim-ready .about-skills-card,
+.anim-ready .about-process-card,
+.anim-ready .pd-overview__card,
+.anim-ready .pd-details__card,
+.anim-ready .pd-tech__item,
+.anim-ready .ct-body {
+    opacity: 0;
+    transform: translateY(36px);
+}
+
+/* Stat items */
+.anim-ready .about-stat {
+    opacity: 0;
+    transform: translateY(20px);
+}
+
+/* Process steps */
+.anim-ready .about-process-step,
+.anim-ready .pd-process__step {
+    opacity: 0;
+    transform: translateY(24px);
+}
+
+/* Gallery items */
+.anim-ready .pd-gallery__item {
+    opacity: 0;
+    transform: scale(0.92);
+}
+
+/* CTA banner */
+.anim-ready .cta-banner {
+    opacity: 0;
+    transform: translateY(32px);
+}
+
+/* Footer */
+.anim-ready .site-footer {
+    opacity: 0;
+    transform: translateY(16px);
+}
+
+/* Project nav */
+.anim-ready .pd-projnav {
+    opacity: 0;
+    transform: translateY(20px);
+}
+
+/* Channel rows in contact */
+.anim-ready .ct-channel {
+    opacity: 0;
+    transform: translateX(20px);
+}
+
+/* Social icons */
+.anim-ready .ct-social {
+    opacity: 0;
+    transform: scale(0.7);
+}
+
+/* Tool icons */
+.anim-ready .about-tool {
+    opacity: 0;
+    transform: translateY(16px) scale(0.9);
+}
+
+/* =========================================
+   HERO PARALLAX — no initial state needed,
+   GSAP handles this live on scroll
+========================================= */
+
+/* =========================================
+   REDUCED MOTION — disable everything
+========================================= */
+@media (prefers-reduced-motion: reduce) {
+    .anim-ready .anim-fade-up,
+    .anim-ready .anim-fade-down,
+    .anim-ready .anim-fade-left,
+    .anim-ready .anim-fade-right,
+    .anim-ready .anim-scale-up,
+    .anim-ready .anim-clip-up,
+    .anim-ready .proj-heading-line,
+    .anim-ready .about-heading-line,
+    .anim-ready .pd-hero__divider,
+    .anim-ready .about-bar__fill,
+    .anim-ready .proj-card,
+    .anim-ready .about-bio-card,
+    .anim-ready .about-skills-card,
+    .anim-ready .about-process-card,
+    .anim-ready .pd-overview__card,
+    .anim-ready .pd-details__card,
+    .anim-ready .pd-tech__item,
+    .anim-ready .ct-body,
+    .anim-ready .about-stat,
+    .anim-ready .about-process-step,
+    .anim-ready .pd-process__step,
+    .anim-ready .pd-gallery__item,
+    .anim-ready .cta-banner,
+    .anim-ready .site-footer,
+    .anim-ready .pd-projnav,
+    .anim-ready .ct-channel,
+    .anim-ready .ct-social,
+    .anim-ready .about-tool {
+        opacity: 1 !important;
+        transform: none !important;
+        clip-path: none !important;
+        width: var(--pct) !important;
+    }
+}

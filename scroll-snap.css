@@ -1,0 +1,44 @@
+/* =========================================
+   HERO SNAP — force hero to exactly 100vh
+========================================= */
+
+section#Home.hero {
+    height: 100vh;
+    min-height: 100vh;
+    max-height: 100vh;
+    overflow: hidden;
+}
+
+/* Scroll hint */
+.scroll-hint {
+    position: absolute;
+    bottom: 36px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    z-index: 10;
+    pointer-events: none;
+    opacity: 1;
+    transition: opacity 0.5s ease;
+}
+.scroll-hint.is-hidden { opacity: 0; }
+.scroll-hint__label {
+    font-size: 10px;
+    font-weight: 400;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.5);
+}
+.scroll-hint__arrow {
+    animation: hint-bounce 1.8s ease-in-out infinite;
+}
+@keyframes hint-bounce {
+    0%,100% { transform: translateY(0);    opacity: 0.5; }
+    50%      { transform: translateY(7px); opacity: 1;   }
+}
+@media (prefers-reduced-motion: reduce) {
+    .scroll-hint__arrow { animation: none; opacity: 0.6; }
+}

@@ -11,6 +11,11 @@
     <link rel="stylesheet" href="hero.css">
     <link rel="stylesheet" href="projects.css">
     <link rel="stylesheet" href="about.css">
+    <link rel="stylesheet" href="customize.css">
+    <link rel="stylesheet" href="contact.css">
+    <link rel="stylesheet" href="animations.css">
+    <link rel="stylesheet" href="nav-theme.css">
+    <link rel="stylesheet" href="scroll-snap.css">
 </head>
 
 <body>
@@ -30,10 +35,11 @@
 
         <!-- Navigation -->
         <nav id="nav-menu" class="nav-menu" role="navigation" aria-label="Main navigation">
-            <a href="#Home" class="active">Home</a>
-            <a href="#Projects">Projects</a>
-            <a href="#about">About</a>
-            <a href="#contact">Contact</a>
+            <a href="hero.html#Home" class="active">Home</a>
+            <a href="hero.html#Projects">Projects</a>
+            <a href="hero.html#customize">Customize</a>
+            <a href="hero.html#about">About</a>
+            <a href="hero.html#contact">Contact</a>
             <span class="nav-indicator" aria-hidden="true"></span>
         </nav>
 
@@ -41,13 +47,13 @@
         <div class="nav-overlay" aria-hidden="true"></div>
 
         <!-- Contact Button -->
-        <a href="tel:+919995407850" class="nav-contact" aria-label="Call us at +91 99954 07850">
+        <a href="tel:+919876543210" class="nav-contact" aria-label="Call us at +91 98765 43210">
             <img src="assets/images/call.png" alt="">
-            <span>+91 9995407850</span>
+            <span>+91 98765 43210</span>
         </a>
 
         <!-- Hero Section -->
-        <section id="Home" class="hero" aria-label="Hero">
+        <section id="Home" class="hero dark-section" aria-label="Hero">
 
             <img src="assets/images/hero.jpg" alt="Architectural Visualization — dramatic modern building interior">
 
@@ -101,7 +107,7 @@
         <!-- =============================================
              PROJECTS SECTION
         ============================================= -->
-        <section id="Projects" class="projects-section">
+        <section id="Projects" class="projects-section light-section">
 
             <!-- Section Header -->
             <div class="projects-header">
@@ -235,10 +241,124 @@
             </div>
         </section>
 
+
+        <!-- =============================================
+             CUSTOMIZE SECTION
+        ============================================= -->
+        <section id="customize" class="customize-section dark-section" aria-label="Customize your space">
+
+            <!-- Canvas handles the blur/pixelate transition effect -->
+            <canvas class="cst-canvas" id="cst-canvas" aria-hidden="true"></canvas>
+
+            <!-- All 12 combination images (color1-3 × sofa1-2 × day/night) -->
+            <!-- src left empty — fill in your renders when ready -->
+            <div class="cst-images" aria-hidden="true">
+                <img id="cst-c1-s1-day"   src="assets/customize/cst-c1-s1-day.png"   alt="Living room, variation 1, sofa option 1, day lighting">
+                <img id="cst-c1-s1-night" src="assets/customize/cst-c1-s1-night.png" alt="Living room, variation 1, sofa option 1, night lighting">
+                <img id="cst-c1-s2-day"   src="assets/customize/cst-c1-s2-day.png"   alt="Living room, variation 1, sofa option 2, day lighting">
+                <img id="cst-c1-s2-night" src="assets/customize/cst-c1-s2-night.png" alt="Living room, variation 1, sofa option 2, night lighting">
+                <img id="cst-c2-s1-day"   src="assets/customize/cst-c2-s1-day.png"   alt="Living room, variation 2, sofa option 1, day lighting">
+                <img id="cst-c2-s1-night" src="assets/customize/cst-c2-s1-night.png" alt="Living room, variation 2, sofa option 1, night lighting">
+                <img id="cst-c2-s2-day"   src="assets/customize/cst-c2-s2-day.png"   alt="Living room, variation 2, sofa option 2, day lighting">
+                <img id="cst-c2-s2-night" src="assets/customize/cst-c2-s2-night.png" alt="Living room, variation 2, sofa option 2, night lighting">
+                <img id="cst-c3-s1-day"   src="assets/customize/cst-c3-s1-day.png"   alt="Living room, variation 3, sofa option 1, day lighting">
+                <img id="cst-c3-s1-night" src="assets/customize/cst-c3-s1-night.png" alt="Living room, variation 3, sofa option 1, night lighting">
+                <img id="cst-c3-s2-day"   src="assets/customize/cst-c3-s2-day.png"   alt="Living room, variation 3, sofa option 2, day lighting">
+                <img id="cst-c3-s2-night" src="assets/customize/cst-c3-s2-night.png" alt="Living room, variation 3, sofa option 2, night lighting">
+            </div>
+
+            <!-- Fallback placeholder while images are empty -->
+            <div class="cst-bg__placeholder" aria-hidden="true"></div>
+
+            <div class="cst-gradient" aria-hidden="true"></div>
+
+            <div class="cst-content">
+
+                <p class="cst-eyebrow">Interactive Preview</p>
+                <h2 class="cst-title">
+                    <span>Customize</span>
+                    <strong>Your Space.</strong>
+                </h2>
+                <div class="cst-line" aria-hidden="true"></div>
+                <p class="cst-desc">
+                    Personalize colors and lighting to see your space before it's built.
+                </p>
+
+                <div class="cst-controls">
+
+                    <!-- Colour -->
+                    <div class="cst-group">
+                        <span class="cst-group__label">Variation</span>
+                        <button class="cst-btn is-active"
+                                data-cst-group="color" data-cst-value="1"
+                                aria-label="Variation 1" aria-pressed="true">
+                            <span class="cst-btn__swatch" style="background:#06183e;"></span>
+                            <span class="cst-btn__name">Option 1</span>
+                        </button>
+                        <button class="cst-btn"
+                                data-cst-group="color" data-cst-value="2"
+                                aria-label="Variation 2" aria-pressed="false">
+                            <span class="cst-btn__swatch" style="background:#c4a882;"></span>
+                            <span class="cst-btn__name">Option 2</span>
+                        </button>
+                        <button class="cst-btn"
+                                data-cst-group="color" data-cst-value="3"
+                                aria-label="Variation 3" aria-pressed="false">
+                            <span class="cst-btn__swatch" style="background:#4a5568;"></span>
+                            <span class="cst-btn__name">Option 3</span>
+                        </button>
+                    </div>
+
+                    <!-- Sofa -->
+                    <div class="cst-group">
+                        <span class="cst-group__label">Sofa</span>
+                        <button class="cst-btn is-active"
+                                data-cst-group="sofa" data-cst-value="1"
+                                aria-label="Sofa option 1" aria-pressed="true">
+                            <span class="cst-btn__swatch" style="background:#1a2d54;"></span>
+                            <span class="cst-btn__name">Option 1</span>
+                        </button>
+                        <button class="cst-btn"
+                                data-cst-group="sofa" data-cst-value="2"
+                                aria-label="Sofa option 2" aria-pressed="false">
+                            <span class="cst-btn__swatch" style="background:#c4a882;"></span>
+                            <span class="cst-btn__name">Option 2</span>
+                        </button>
+                    </div>
+
+                    <!-- Lighting -->
+                    <div class="cst-group">
+                        <span class="cst-group__label">Lighting</span>
+                        <button class="cst-btn is-active"
+                                data-cst-group="light" data-cst-value="day"
+                                aria-label="Day lighting" aria-pressed="true">
+                            <span class="cst-btn__swatch" style="background:radial-gradient(circle at 35% 35%,#e8f4fd,#b8d9f0);"></span>
+                            <span class="cst-btn__name">Day</span>
+                        </button>
+                        <button class="cst-btn"
+                                data-cst-group="light" data-cst-value="night"
+                                aria-label="Night lighting" aria-pressed="false">
+                            <span class="cst-btn__swatch" style="background:radial-gradient(circle at 35% 35%,#f5c842,#c9880a);"></span>
+                            <span class="cst-btn__name">Night</span>
+                        </button>
+                    </div>
+
+                </div>
+
+                <p class="cst-status" id="cst-status" aria-live="polite">
+                    <span class="cst-status__dot" id="cst-dot"></span>
+                    <span id="cst-status-text">Option 1 · Sofa 1 · Day</span>
+                </p>
+
+            </div>
+
+        </section>
+
+
         <!-- =============================================
              ABOUT SECTION
         ============================================= -->
-        <section id="about" class="about-section" aria-label="About me">
+        <section id="about" class="about-section light-section" aria-label="About me">
 
             <!-- ── Page Header ── -->
             <div class="about-header">
@@ -543,9 +663,194 @@
         </section>
 
         <!-- =============================================
+             CONTACT HERO
+        ============================================= -->
+        <section id="contact" class="ct-hero dark-section" aria-label="Contact hero">
+            <img src="assets/images/hero.jpg" alt="Luxury modern residence at dusk">
+            <div class="ct-hero__overlay" aria-hidden="true"></div>
+
+            <div class="ct-hero__content">
+                <p class="ct-hero__eyebrow">Contact Us</p>
+                <h1 class="ct-hero__title">
+                    <span>Let's Build</span>
+                    <strong>Something<br>Iconic.</strong>
+                </h1>
+                <p class="ct-hero__desc">
+                    Have a project in mind? We'd love to hear about it.<br>
+                    Tell us about your ideas and we'll help you<br>
+                    bring them to life.
+                </p>
+                <div class="ct-hero__badge">
+                    <div class="ct-hero__badge-icon" aria-hidden="true">
+                        <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M2 14L14 2M14 2H6M14 2v8" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                    </div>
+                    <span>We typically reply within 24 hours.</span>
+                </div>
+            </div>
+        </section>
+        <section class="ct-body" id="ct-form" aria-label="Contact form and information">
+
+            <!-- FORM PANEL -->
+            <div class="ct-form-panel">
+                <h2 class="ct-panel-title">Send Us a Message</h2>
+                <p class="ct-panel-desc">Fill out the form below and we'll get back to you soon.</p>
+
+                <form class="ct-form" id="contactForm" novalidate>
+
+                    <div class="ct-form__row">
+                        <div class="ct-field">
+                            <input type="text" id="cf-name" name="name" placeholder="Full Name" autocomplete="name" required>
+                        </div>
+                        <div class="ct-field">
+                            <input type="email" id="cf-email" name="email" placeholder="Email Address" autocomplete="email" required>
+                        </div>
+                    </div>
+
+                    <div class="ct-form__row">
+                        <div class="ct-field">
+                            <input type="tel" id="cf-phone" name="phone" placeholder="Phone Number" autocomplete="tel">
+                        </div>
+                        <div class="ct-field">
+                            <input type="text" id="cf-company" name="company" placeholder="Company (Optional)" autocomplete="organization">
+                        </div>
+                    </div>
+
+                    <div class="ct-field ct-field--select">
+                        <select id="cf-type" name="project_type" aria-label="Project Type">
+                            <option value="" disabled selected hidden>Project Type</option>
+                            <option value="exterior">Exterior Visualization</option>
+                            <option value="interior">Interior Visualization</option>
+                            <option value="walkthrough">3D Walkthrough / Animation</option>
+                            <option value="commercial">Commercial Project</option>
+                            <option value="residential">Residential Project</option>
+                            <option value="other">Other</option>
+                        </select>
+                        <div class="ct-field__chevron" aria-hidden="true">
+                            <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 5l5 5 5-5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                        </div>
+                    </div>
+
+                    <div class="ct-field ct-field--textarea">
+                        <textarea id="cf-message" name="message" rows="5" placeholder="Tell us about your project" required></textarea>
+                        <p class="ct-field__hint">Share details about your project, requirements, timeline, and any specific needs.</p>
+                    </div>
+
+                    <label class="ct-checkbox" for="cf-agree">
+                        <input type="checkbox" id="cf-agree" name="agree" required>
+                        <span class="ct-checkbox__box" aria-hidden="true">
+                            <svg class="ct-checkbox__tick" width="10" height="8" viewBox="0 0 10 8" fill="none"><path d="M1 4l3 3L9 1" stroke="white" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                        </span>
+                        <span>I agree to the <a href="#" class="ct-link">Privacy Policy</a> and <a href="#" class="ct-link">Terms of Service</a>.</span>
+                    </label>
+
+                    <button type="submit" class="ct-submit">
+                        <span>Send Message</span>
+                        <span class="ct-submit__icon" aria-hidden="true">
+                            <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M2 14L14 2M14 2H6M14 2v8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                        </span>
+                    </button>
+
+                    <!-- Success state (hidden until form sends) -->
+                    <div class="ct-success" id="ctSuccess" hidden role="status" aria-live="polite">
+                        <div class="ct-success__icon" aria-hidden="true">
+                            <svg width="22" height="22" viewBox="0 0 22 22" fill="none"><circle cx="11" cy="11" r="9" stroke="currentColor" stroke-width="1.5" fill="none"/><path d="M7 11.5l3 3 5-6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                        </div>
+                        <div>
+                            <strong>Message sent!</strong>
+                            <p>Thank you — we'll get back to you within 24 hours.</p>
+                        </div>
+                    </div>
+
+                </form>
+            </div>
+
+            <!-- INFO PANEL -->
+            <div class="ct-info-panel">
+                <h2 class="ct-panel-title">Get in Touch</h2>
+                <p class="ct-panel-desc">Reach out to us through any of the channels below.</p>
+
+                <ul class="ct-channels" role="list">
+
+                    <li class="ct-channel" role="listitem">
+                        <a href="mailto:hello@samarchviz.com" class="ct-channel__link">
+                            <div class="ct-channel__icon">
+                                <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><rect x="2" y="4" width="16" height="13" rx="2" stroke="currentColor" stroke-width="1.4" fill="none"/><path d="M2 7l8 5 8-5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>
+                            </div>
+                            <div class="ct-channel__text">
+                                <strong>Email</strong>
+                                <span>hello@samarchviz.com</span>
+                            </div>
+                        </a>
+                    </li>
+
+                    <li class="ct-channel" role="listitem">
+                        <a href="tel:+919876543210" class="ct-channel__link">
+                            <div class="ct-channel__icon">
+                                <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M5.5 3c0 0-1.5.5-2.5 2S2.5 9 5 12s5 6 7 6.5 3.5-.5 4.5-1.5-.5-2.5-1.5-3S13 12 12.5 12s-1.5 1-2 1-3-2-4-3-1.5-2.5-1-3 1-1.5 1-2-.5-2.5-1-2.5z" stroke="currentColor" stroke-width="1.4" fill="none" stroke-linejoin="round"/></svg>
+                            </div>
+                            <div class="ct-channel__text">
+                                <strong>Phone</strong>
+                                <span>+91 98765 43210</span>
+                            </div>
+                        </a>
+                    </li>
+
+                    <li class="ct-channel" role="listitem">
+                        <a href="https://wa.me/919876543210" target="_blank" rel="noopener noreferrer" class="ct-channel__link">
+                            <div class="ct-channel__icon">
+                                <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="8" stroke="currentColor" stroke-width="1.4" fill="none"/><path d="M6.5 8c0 0 .5.5 1 1.5s1.5 2.5 2.5 3 1.5.3 2 0l.5-.5-1.5-1.5c-.2-.2-.5-.2-.7 0L9.8 11c-.3-.3-1.5-1.5-1.8-2l.5-.5c.2-.2.2-.5 0-.7L7 6.5c-.3-.3-.7-.2-1 0-.5.5-.5 1.5 0 2z" stroke="currentColor" stroke-width="1.2" fill="none" stroke-linejoin="round"/></svg>
+                            </div>
+                            <div class="ct-channel__text">
+                                <strong>WhatsApp</strong>
+                                <span>+91 98765 43210</span>
+                            </div>
+                        </a>
+                    </li>
+
+                    <li class="ct-channel" role="listitem">
+                        <div class="ct-channel__link ct-channel__link--static">
+                            <div class="ct-channel__icon">
+                                <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="8" stroke="currentColor" stroke-width="1.4" fill="none"/><path d="M10 6v4l2.5 2.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                            </div>
+                            <div class="ct-channel__text">
+                                <strong>Studio Hours</strong>
+                                <span>Mon – Sat : 9:00 AM – 7:00 PM IST</span>
+                            </div>
+                        </div>
+                    </li>
+
+                </ul>
+
+                <div class="ct-follow">
+                    <h3 class="ct-follow__title">Follow Us</h3>
+                    <div class="ct-socials" role="list">
+
+                        <a href="https://instagram.com/yourusername" target="_blank" rel="noopener noreferrer" class="ct-social" role="listitem" aria-label="Instagram">
+                            <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><rect x="2" y="2" width="14" height="14" rx="4" stroke="currentColor" stroke-width="1.5" fill="none"/><circle cx="9" cy="9" r="3.5" stroke="currentColor" stroke-width="1.5" fill="none"/><circle cx="13.5" cy="4.5" r="0.8" fill="currentColor"/></svg>
+                        </a>
+
+                        <a href="https://linkedin.com/in/yourusername" target="_blank" rel="noopener noreferrer" class="ct-social" role="listitem" aria-label="LinkedIn">
+                            <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><rect x="2" y="2" width="14" height="14" rx="3" stroke="currentColor" stroke-width="1.5" fill="none"/><path d="M6 8v5M6 6v0" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><path d="M9 13v-2.5a2 2 0 0 1 4 0V13" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                        </a>
+
+                        <a href="https://behance.net/yourusername" target="_blank" rel="noopener noreferrer" class="ct-social" role="listitem" aria-label="Behance">
+                            <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M3 6h5.5c1.1 0 1.8.7 1.8 1.5S9.6 9 8.5 9H3V6z" stroke="currentColor" stroke-width="1.3" fill="none" stroke-linejoin="round"/><path d="M3 9h5.8c1.3 0 2.2.8 2.2 2S10.1 13 8.8 13H3V9z" stroke="currentColor" stroke-width="1.3" fill="none" stroke-linejoin="round"/><path d="M13 7h3.5M13 11c0 1.1.9 2 2 2a2 2 0 0 0 1.7-1" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg>
+                        </a>
+
+                        <a href="https://upwork.com/yourusername" target="_blank" rel="noopener noreferrer" class="ct-social" role="listitem" aria-label="Upwork">
+                            <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M2 11c0 0 2-5 4-5s2.5 3.5 3 5c.3-2.5 1-5.5 3-5.5s3 3.5 3 5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" fill="none"/><path d="M15 11v1.5a1.5 1.5 0 0 0 1.5-1.5H15z" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" fill="none"/></svg>
+                        </a>
+
+                    </div>
+                </div>
+            </div>
+
+        </section>
+
+        <!-- =============================================
              CTA BANNER (now "Let's Bring Your Vision")
         ============================================= -->
-        <section id="contact" class="cta-banner" aria-label="Call to action">
+        <section  class="cta-banner dark-section" aria-label="Call to action">
             <div class="cta-banner__content">
                 <p class="cta-eyebrow">Let's create something amazing</p>
                 <h2 class="cta-title">Let's Bring Your<br>Vision to Life</h2>
@@ -600,7 +905,7 @@
         <!-- =============================================
              FOOTER
         ============================================= -->
-        <footer class="site-footer" role="contentinfo">
+        <footer class="site-footer dark-section" role="contentinfo">
             <div class="footer__left">
                 <img src="assets/images/logo.png" alt="Archviz Studio" class="footer__logo">
                 <p class="footer__copy">&copy; 2024 Archviz Studio. All rights reserved.</p>
@@ -618,8 +923,241 @@
 
     <!-- GSAP -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.7/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.7/ScrollTrigger.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.7/ScrollToPlugin.min.js"></script>
     <!-- Custom JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.7/ScrollToPlugin.min.js"></script>
+    <script src="scroll-snap.js"></script>
     <script src="script.js"></script>
+    <script src="animations.js"></script>
+    <script src="nav-theme.js"></script>
+
+    <script>
+    /* ── Customize Section — per-combination images + canvas transition ── */
+    (function () {
+
+        const state = { color: "1", sofa: "1", light: "day" };
+
+        const colorNames = { "1": "Option 1", "2": "Option 2", "3": "Option 3" };
+        const sofaNames  = { "1": "Sofa 1",   "2": "Sofa 2" };
+        const lightNames = { "day": "Day",     "night": "Night" };
+
+        const canvas = document.getElementById("cst-canvas");
+        const ctx    = canvas ? canvas.getContext("2d") : null;
+
+        // ── Resize canvas to fill section ──
+        function resizeCanvas() {
+            if (!canvas) return;
+            canvas.width  = canvas.offsetWidth;
+            canvas.height = canvas.offsetHeight;
+        }
+        resizeCanvas();
+        window.addEventListener("resize", resizeCanvas, { passive: true });
+
+        // ── Get image element for current state ──
+        function imgId(c, s, l) {
+            return "cst-c" + c + "-s" + s + "-" + l;
+        }
+
+        function currentImg() {
+            return document.getElementById(imgId(state.color, state.sofa, state.light));
+        }
+
+        // ── Draw image to canvas ──
+        function drawToCanvas(imgEl) {
+            if (!ctx || !imgEl || !imgEl.complete || !imgEl.naturalWidth) return false;
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            // Cover fit
+            const iw = imgEl.naturalWidth, ih = imgEl.naturalHeight;
+            const cw = canvas.width,       ch = canvas.height;
+            const scale = Math.max(cw / iw, ch / ih);
+            const sw = iw * scale, sh = ih * scale;
+            ctx.drawImage(imgEl, (cw - sw) / 2, (ch - sh) / 2, sw, sh);
+            return true;
+        }
+
+        // ── Transition: blur out → pixelate → blur in ──
+        let animFrame = null;
+        let transitioning = false;
+
+        function transitionTo(nextImgEl) {
+            if (!ctx) {
+                // No canvas support — just show placeholder
+                return;
+            }
+
+            if (animFrame) cancelAnimationFrame(animFrame);
+            transitioning = true;
+
+            // Snapshot current canvas state
+            const snapshot = ctx.getImageData(0, 0, canvas.width, canvas.height);
+
+            const DURATION  = 900;  // ms total
+            const start     = performance.now();
+
+            // Phases (0–1):
+            // 0.0 – 0.35 : blur out + pixelate current
+            // 0.35 – 0.65: hold at max pixelate (loading moment)
+            // 0.65 – 1.0 : pixelate in + sharpen next
+
+            function ease(t) { return t < 0.5 ? 2*t*t : -1+(4-2*t)*t; }
+
+            function applyPixelate(imageData, blockSize) {
+                if (blockSize <= 1) return imageData;
+                const d    = imageData.data;
+                const w    = imageData.width;
+                const h    = imageData.height;
+                const out  = ctx.createImageData(w, h);
+                const od   = out.data;
+
+                for (let y = 0; y < h; y += blockSize) {
+                    for (let x = 0; x < w; x += blockSize) {
+                        const i = (y * w + x) * 4;
+                        const r = d[i], g = d[i+1], b = d[i+2], a = d[i+3];
+                        for (let by = 0; by < blockSize && y + by < h; by++) {
+                            for (let bx = 0; bx < blockSize && x + bx < w; bx++) {
+                                const j = ((y+by) * w + (x+bx)) * 4;
+                                od[j]=r; od[j+1]=g; od[j+2]=b; od[j+3]=a;
+                            }
+                        }
+                    }
+                }
+                return out;
+            }
+
+            function tick(now) {
+                const raw = (now - start) / DURATION;
+                const t   = Math.min(raw, 1);
+
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+                if (t < 0.5) {
+                    // Phase 1: pixelate out current image
+                    const progress  = ease(t / 0.5);
+                    const blockSize = Math.round(1 + progress * 28);
+
+                    // Draw snapshot pixelated
+                    const tempCanvas = document.createElement("canvas");
+                    tempCanvas.width  = canvas.width;
+                    tempCanvas.height = canvas.height;
+                    const tc = tempCanvas.getContext("2d");
+                    tc.putImageData(snapshot, 0, 0);
+
+                    // Scale down then up for pixelate effect
+                    const small = Math.max(1, Math.round(canvas.width / blockSize));
+                    const smallH = Math.max(1, Math.round(canvas.height / blockSize));
+                    ctx.imageSmoothingEnabled = false;
+                    ctx.drawImage(tempCanvas, 0, 0, small, smallH);
+                    ctx.drawImage(canvas, 0, 0, small, smallH, 0, 0, canvas.width, canvas.height);
+
+                    // Blur via globalAlpha overlay
+                    ctx.filter = "blur(" + (progress * 6) + "px)";
+                    ctx.globalAlpha = progress * 0.5;
+                    ctx.fillStyle = "#06183e";
+                    ctx.fillRect(0, 0, canvas.width, canvas.height);
+                    ctx.filter = "none";
+                    ctx.globalAlpha = 1;
+
+                } else {
+                    // Phase 2: pixelate in next image
+                    const progress  = ease((t - 0.5) / 0.5);
+                    const blockSize = Math.round(28 - progress * 27);
+
+                    if (nextImgEl && nextImgEl.complete && nextImgEl.naturalWidth) {
+                        ctx.imageSmoothingEnabled = false;
+                        const small  = Math.max(1, Math.round(canvas.width  / Math.max(1, blockSize)));
+                        const smallH = Math.max(1, Math.round(canvas.height / Math.max(1, blockSize)));
+
+                        // Draw next image scaled down then up
+                        const iw = nextImgEl.naturalWidth, ih = nextImgEl.naturalHeight;
+                        const cw = canvas.width, ch = canvas.height;
+                        const scale = Math.max(cw/iw, ch/ih);
+                        const sw = iw*scale, sh = ih*scale;
+
+                        const temp2 = document.createElement("canvas");
+                        temp2.width = cw; temp2.height = ch;
+                        const t2 = temp2.getContext("2d");
+                        t2.drawImage(nextImgEl, (cw-sw)/2, (ch-sh)/2, sw, sh);
+
+                        ctx.drawImage(temp2, 0, 0, small, smallH);
+                        ctx.imageSmoothingEnabled = false;
+                        ctx.drawImage(canvas, 0, 0, small, smallH, 0, 0, cw, ch);
+                        ctx.imageSmoothingEnabled = true;
+
+                    } else {
+                        // Image not loaded yet — show dark placeholder
+                        ctx.fillStyle = "#06183e";
+                        ctx.fillRect(0, 0, canvas.width, canvas.height);
+                    }
+                }
+
+                if (t < 1) {
+                    animFrame = requestAnimationFrame(tick);
+                } else {
+                    // Final frame — draw crisp
+                    ctx.imageSmoothingEnabled = true;
+                    drawToCanvas(nextImgEl);
+                    transitioning = false;
+                }
+            }
+
+            animFrame = requestAnimationFrame(tick);
+        }
+
+        // ── Switch combination ──
+        function switchTo() {
+            const img = currentImg();
+            if (img && img.complete && img.naturalWidth) {
+                transitionTo(img);
+            } else if (img) {
+                // Not loaded yet — wait for it
+                img.onload = () => transitionTo(img);
+                transitionTo(null); // animate to placeholder
+            } else {
+                transitionTo(null);
+            }
+        }
+
+        // ── Init — draw first image or placeholder ──
+        window.addEventListener("load", () => {
+            resizeCanvas();
+            const first = currentImg();
+            if (first && first.complete && first.naturalWidth) {
+                drawToCanvas(first);
+            }
+            // else placeholder CSS shows
+        });
+
+        // ── Update status label ──
+        function updateStatus() {
+            const t = document.getElementById("cst-status-text");
+            if (t) t.textContent =
+                colorNames[state.color] + " · " +
+                sofaNames[state.sofa]   + " · " +
+                lightNames[state.light];
+        }
+
+        // ── Button clicks ──
+        document.querySelectorAll("[data-cst-group]").forEach(btn => {
+            btn.addEventListener("click", () => {
+                const group = btn.dataset.cstGroup;
+                const val   = btn.dataset.cstValue;
+
+                document.querySelectorAll("[data-cst-group='" + group + "']").forEach(b => {
+                    b.classList.remove("is-active");
+                    b.setAttribute("aria-pressed", "false");
+                });
+                btn.classList.add("is-active");
+                btn.setAttribute("aria-pressed", "true");
+
+                state[group] = val;
+                updateStatus();
+                switchTo();
+            });
+        });
+
+    })();
+    </script>
 </body>
 
 </html>

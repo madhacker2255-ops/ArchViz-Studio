@@ -283,7 +283,7 @@
 @media (max-width: 768px) {
 
     .hero {
-        padding: 0; /* remove; elements use absolute positioning */
+        padding: 0;
         height: 100svh;
         min-height: 100svh;
     }
@@ -297,93 +297,102 @@
     .hero-overlay {
         background:
             linear-gradient(
-                to top,
-                rgba(0,0,0,0.60) 0%,
-                rgba(6, 18, 48, 0.30) 45%,
-                rgba(6, 18, 48, 0.15) 100%
+                to bottom,
+                rgba(6, 18, 48, 0.55) 0%,
+                rgba(6, 18, 48, 0.10) 40%,
+                rgba(0,0,0,0.55) 100%
             );
     }
 
-    /* Title — top left, below nav */
+    /* ── Title ───────────────────────────────
+       Sits in the lower half of the screen so
+       it clears the fixed nav bar and the image's
+       focal point (the building) remains visible.
+       Use bottom positioning to anchor it above
+       the social/card row instead of fighting
+       the nav height with a fixed top value.   */
     .hero-title {
-        left: 28px;
-        right: 28px;
-        top: 120px;
-        transform: none;
-        max-width: 100%;
+        position: absolute;
+        left: 24px;
+        right: 24px;       /* constrain width to screen - gutters */
+        bottom: 140px;     /* sit above the social + glass card row */
+        top: auto;         /* cancel base top value */
+        transform: none;   /* cancel base translateY */
+        max-width: 100%;   /* override the 60vw cap */
+        line-height: 1.0;
     }
 
     .hero-title span {
-        font-size: clamp(3.5rem, 14vw, 5.5rem);
-        letter-spacing: 0.04em;
+        font-size: clamp(2.8rem, 11vw, 4.2rem);
+        letter-spacing: 0.06em;
     }
 
     .hero-title strong {
-        font-size: clamp(4rem, 16vw, 6.5rem);
+        font-size: clamp(3.2rem, 13vw, 5rem);
         letter-spacing: 0.01em;
     }
 
     .hero-line {
-        width: 60px;
-        margin-top: 14px;
+        width: 48px;
+        margin-top: 16px;
     }
 
     .hero-subtitle {
-        font-size: 0.95rem;
+        font-size: 0.9rem;
         line-height: 1.5;
-        max-width: 280px;
-        margin-top: 12px;
+        max-width: 100%;   /* let it wrap naturally within the gutters */
+        margin-top: 10px;
+        color: rgba(255,255,255,0.85);
     }
 
-    /* Location note — hidden on mobile to reduce clutter */
+    /* Location note — hidden on mobile */
     .location-note {
         display: none;
     }
 
-    /* Social links — bottom left */
+    /* Social links — bottom left above safe area */
     .social-links {
         left: 24px;
-        bottom: 24px;
-        gap: 14px;
+        bottom: 28px;
+        gap: 16px;
     }
 
     .social-links img {
-        width: 26px;
-        height: 26px;
+        width: 28px;
+        height: 28px;
     }
 
-    /* Glass card — bottom right, taller on mobile */
+    /* Glass card — bottom right, compact */
     .glass-box {
         right: 20px;
-        bottom: 24px;
-
-        width: 110px;
-        height: 130px;
-        border-radius: 20px;
+        bottom: 20px;
+        width: 100px;
+        height: 110px;
+        border-radius: 18px;
     }
 
     .glass-box strong {
-        font-size: 0.8rem;
-        top: 12px;
-        left: 12px;
+        font-size: 0.75rem;
+        top: 10px;
+        left: 10px;
     }
 
     .glass-box span {
-        font-size: 2.75rem;
-        right: 10px;
-        bottom: 8px;
+        font-size: 2.4rem;
+        right: 8px;
+        bottom: 6px;
     }
 
     .ticket-icon {
         top: 10px;
         right: 10px;
-        width: 30px;
-        height: 16px;
+        width: 28px;
+        height: 15px;
     }
 
     .ticket-icon img {
-        width: 10px;
-        height: 10px;
+        width: 9px;
+        height: 9px;
     }
 }
 
@@ -394,29 +403,35 @@
 @media (max-width: 400px) {
 
     .hero-title {
-        top: 110px;
+        left: 20px;
+        right: 20px;
+        bottom: 130px;
     }
 
     .hero-title span {
-        font-size: clamp(3rem, 13vw, 4.5rem);
+        font-size: clamp(2.4rem, 10vw, 3.2rem);
     }
 
     .hero-title strong {
-        font-size: clamp(3.5rem, 15vw, 5.5rem);
+        font-size: clamp(2.8rem, 12vw, 4rem);
     }
 
     .hero-subtitle {
-        font-size: 0.9rem;
-        max-width: 240px;
+        font-size: 0.85rem;
     }
 
     .glass-box {
-        width: 100px;
-        height: 120px;
+        width: 90px;
+        height: 100px;
     }
 
     .glass-box span {
-        font-size: 2.4rem;
+        font-size: 2rem;
+    }
+
+    .social-links {
+        bottom: 24px;
+        gap: 14px;
     }
 }
 
