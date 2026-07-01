@@ -37,7 +37,7 @@
         <nav id="nav-menu" class="nav-menu" role="navigation" aria-label="Main navigation">
             <a href="hero.html#Home" class="active">Home</a>
             <a href="hero.html#Projects">Projects</a>
-            <a href="hero.html#customize">Customize</a>
+            <a href="hero.html#Customize">Customize</a>
             <a href="hero.html#about">About</a>
             <a href="hero.html#contact">Contact</a>
             <span class="nav-indicator" aria-hidden="true"></span>
@@ -247,24 +247,20 @@
         ============================================= -->
         <section id="customize" class="customize-section dark-section" aria-label="Customize your space">
 
-            <!-- Canvas handles the blur/pixelate transition effect -->
-            <canvas class="cst-canvas" id="cst-canvas" aria-hidden="true"></canvas>
-
-            <!-- All 12 combination images (color1-3 × sofa1-2 × day/night) -->
-            <!-- src left empty — fill in your renders when ready -->
+            <!-- All 12 combination images stacked, one shown at a time -->
             <div class="cst-images" aria-hidden="true">
-                <img id="cst-c1-s1-day"   src="assets/customize/cst-c1-s1-day.png"   alt="Living room, variation 1, sofa option 1, day lighting">
-                <img id="cst-c1-s1-night" src="assets/customize/cst-c1-s1-night.png" alt="Living room, variation 1, sofa option 1, night lighting">
-                <img id="cst-c1-s2-day"   src="assets/customize/cst-c1-s2-day.png"   alt="Living room, variation 1, sofa option 2, day lighting">
-                <img id="cst-c1-s2-night" src="assets/customize/cst-c1-s2-night.png" alt="Living room, variation 1, sofa option 2, night lighting">
-                <img id="cst-c2-s1-day"   src="assets/customize/cst-c2-s1-day.png"   alt="Living room, variation 2, sofa option 1, day lighting">
-                <img id="cst-c2-s1-night" src="assets/customize/cst-c2-s1-night.png" alt="Living room, variation 2, sofa option 1, night lighting">
-                <img id="cst-c2-s2-day"   src="assets/customize/cst-c2-s2-day.png"   alt="Living room, variation 2, sofa option 2, day lighting">
-                <img id="cst-c2-s2-night" src="assets/customize/cst-c2-s2-night.png" alt="Living room, variation 2, sofa option 2, night lighting">
-                <img id="cst-c3-s1-day"   src="assets/customize/cst-c3-s1-day.png"   alt="Living room, variation 3, sofa option 1, day lighting">
-                <img id="cst-c3-s1-night" src="assets/customize/cst-c3-s1-night.png" alt="Living room, variation 3, sofa option 1, night lighting">
-                <img id="cst-c3-s2-day"   src="assets/customize/cst-c3-s2-day.png"   alt="Living room, variation 3, sofa option 2, day lighting">
-                <img id="cst-c3-s2-night" src="assets/customize/cst-c3-s2-night.png" alt="Living room, variation 3, sofa option 2, night lighting">
+                <img class="cst-img is-active" id="cst-c1-s1-day"   src="assets/customize/cst-c1-s1-day.png"   alt="Room variation 1, sofa 1, day">
+                <img class="cst-img"           id="cst-c1-s1-night" src="assets/customize/cst-c1-s1-night.png" alt="Room variation 1, sofa 1, night">
+                <img class="cst-img"           id="cst-c1-s2-day"   src="assets/customize/cst-c1-s2-day.png"   alt="Room variation 1, sofa 2, day">
+                <img class="cst-img"           id="cst-c1-s2-night" src="assets/customize/cst-c1-s2-night.png" alt="Room variation 1, sofa 2, night">
+                <img class="cst-img"           id="cst-c2-s1-day"   src="assets/customize/cst-c2-s1-day.png"   alt="Room variation 2, sofa 1, day">
+                <img class="cst-img"           id="cst-c2-s1-night" src="assets/customize/cst-c2-s1-night.png" alt="Room variation 2, sofa 1, night">
+                <img class="cst-img"           id="cst-c2-s2-day"   src="assets/customize/cst-c2-s2-day.png"   alt="Room variation 2, sofa 2, day">
+                <img class="cst-img"           id="cst-c2-s2-night" src="assets/customize/cst-c2-s2-night.png" alt="Room variation 2, sofa 2, night">
+                <img class="cst-img"           id="cst-c3-s1-day"   src="assets/customize/cst-c3-s1-day.png"   alt="Room variation 3, sofa 1, day">
+                <img class="cst-img"           id="cst-c3-s1-night" src="assets/customize/cst-c3-s1-night.png" alt="Room variation 3, sofa 1, night">
+                <img class="cst-img"           id="cst-c3-s2-day"   src="assets/customize/cst-c3-s2-day.png"   alt="Room variation 3, sofa 2, day">
+                <img class="cst-img"           id="cst-c3-s2-night" src="assets/customize/cst-c3-s2-night.png" alt="Room variation 3, sofa 2, night">
             </div>
 
             <!-- Fallback placeholder while images are empty -->
@@ -347,7 +343,7 @@
 
                 <p class="cst-status" id="cst-status" aria-live="polite">
                     <span class="cst-status__dot" id="cst-dot"></span>
-                    <span id="cst-status-text">Option 1 · Sofa 1 · Day</span>
+                    <span id="cst-status-text">Option 1 · Day</span>
                 </p>
 
             </div>
@@ -933,202 +929,49 @@
     <script src="nav-theme.js"></script>
 
     <script>
-    /* ── Customize Section — per-combination images + canvas transition ── */
+    /* ── Customize Section ── */
     (function () {
 
         const state = { color: "1", sofa: "1", light: "day" };
-
         const colorNames = { "1": "Option 1", "2": "Option 2", "3": "Option 3" };
         const sofaNames  = { "1": "Sofa 1",   "2": "Sofa 2" };
         const lightNames = { "day": "Day",     "night": "Night" };
 
-        const canvas = document.getElementById("cst-canvas");
-        const ctx    = canvas ? canvas.getContext("2d") : null;
+        // ── Preload all 12 images immediately ──
+        const ALL_KEYS = [
+            "cst-c1-s1-day","cst-c1-s1-night",
+            "cst-c1-s2-day","cst-c1-s2-night",
+            "cst-c2-s1-day","cst-c2-s1-night",
+            "cst-c2-s2-day","cst-c2-s2-night",
+            "cst-c3-s1-day","cst-c3-s1-night",
+            "cst-c3-s2-day","cst-c3-s2-night",
+        ];
 
-        // ── Resize canvas to fill section ──
-        function resizeCanvas() {
-            if (!canvas) return;
-            canvas.width  = canvas.offsetWidth;
-            canvas.height = canvas.offsetHeight;
-        }
-        resizeCanvas();
-        window.addEventListener("resize", resizeCanvas, { passive: true });
-
-        // ── Get image element for current state ──
-        function imgId(c, s, l) {
-            return "cst-c" + c + "-s" + s + "-" + l;
-        }
-
-        function currentImg() {
-            return document.getElementById(imgId(state.color, state.sofa, state.light));
-        }
-
-        // ── Draw image to canvas ──
-        function drawToCanvas(imgEl) {
-            if (!ctx || !imgEl || !imgEl.complete || !imgEl.naturalWidth) return false;
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
-            // Cover fit
-            const iw = imgEl.naturalWidth, ih = imgEl.naturalHeight;
-            const cw = canvas.width,       ch = canvas.height;
-            const scale = Math.max(cw / iw, ch / ih);
-            const sw = iw * scale, sh = ih * scale;
-            ctx.drawImage(imgEl, (cw - sw) / 2, (ch - sh) / 2, sw, sh);
-            return true;
-        }
-
-        // ── Transition: blur out → pixelate → blur in ──
-        let animFrame = null;
-        let transitioning = false;
-
-        function transitionTo(nextImgEl) {
-            if (!ctx) {
-                // No canvas support — just show placeholder
-                return;
+        ALL_KEYS.forEach(id => {
+            const img = document.getElementById(id);
+            if (img && !img.complete) {
+                // Already has src set — browser loads it.
+                // Force decode so it's GPU-ready before first click.
+                img.decode && img.decode().catch(() => {});
             }
-
-            if (animFrame) cancelAnimationFrame(animFrame);
-            transitioning = true;
-
-            // Snapshot current canvas state
-            const snapshot = ctx.getImageData(0, 0, canvas.width, canvas.height);
-
-            const DURATION  = 900;  // ms total
-            const start     = performance.now();
-
-            // Phases (0–1):
-            // 0.0 – 0.35 : blur out + pixelate current
-            // 0.35 – 0.65: hold at max pixelate (loading moment)
-            // 0.65 – 1.0 : pixelate in + sharpen next
-
-            function ease(t) { return t < 0.5 ? 2*t*t : -1+(4-2*t)*t; }
-
-            function applyPixelate(imageData, blockSize) {
-                if (blockSize <= 1) return imageData;
-                const d    = imageData.data;
-                const w    = imageData.width;
-                const h    = imageData.height;
-                const out  = ctx.createImageData(w, h);
-                const od   = out.data;
-
-                for (let y = 0; y < h; y += blockSize) {
-                    for (let x = 0; x < w; x += blockSize) {
-                        const i = (y * w + x) * 4;
-                        const r = d[i], g = d[i+1], b = d[i+2], a = d[i+3];
-                        for (let by = 0; by < blockSize && y + by < h; by++) {
-                            for (let bx = 0; bx < blockSize && x + bx < w; bx++) {
-                                const j = ((y+by) * w + (x+bx)) * 4;
-                                od[j]=r; od[j+1]=g; od[j+2]=b; od[j+3]=a;
-                            }
-                        }
-                    }
-                }
-                return out;
-            }
-
-            function tick(now) {
-                const raw = (now - start) / DURATION;
-                const t   = Math.min(raw, 1);
-
-                ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-                if (t < 0.5) {
-                    // Phase 1: pixelate out current image
-                    const progress  = ease(t / 0.5);
-                    const blockSize = Math.round(1 + progress * 28);
-
-                    // Draw snapshot pixelated
-                    const tempCanvas = document.createElement("canvas");
-                    tempCanvas.width  = canvas.width;
-                    tempCanvas.height = canvas.height;
-                    const tc = tempCanvas.getContext("2d");
-                    tc.putImageData(snapshot, 0, 0);
-
-                    // Scale down then up for pixelate effect
-                    const small = Math.max(1, Math.round(canvas.width / blockSize));
-                    const smallH = Math.max(1, Math.round(canvas.height / blockSize));
-                    ctx.imageSmoothingEnabled = false;
-                    ctx.drawImage(tempCanvas, 0, 0, small, smallH);
-                    ctx.drawImage(canvas, 0, 0, small, smallH, 0, 0, canvas.width, canvas.height);
-
-                    // Blur via globalAlpha overlay
-                    ctx.filter = "blur(" + (progress * 6) + "px)";
-                    ctx.globalAlpha = progress * 0.5;
-                    ctx.fillStyle = "#06183e";
-                    ctx.fillRect(0, 0, canvas.width, canvas.height);
-                    ctx.filter = "none";
-                    ctx.globalAlpha = 1;
-
-                } else {
-                    // Phase 2: pixelate in next image
-                    const progress  = ease((t - 0.5) / 0.5);
-                    const blockSize = Math.round(28 - progress * 27);
-
-                    if (nextImgEl && nextImgEl.complete && nextImgEl.naturalWidth) {
-                        ctx.imageSmoothingEnabled = false;
-                        const small  = Math.max(1, Math.round(canvas.width  / Math.max(1, blockSize)));
-                        const smallH = Math.max(1, Math.round(canvas.height / Math.max(1, blockSize)));
-
-                        // Draw next image scaled down then up
-                        const iw = nextImgEl.naturalWidth, ih = nextImgEl.naturalHeight;
-                        const cw = canvas.width, ch = canvas.height;
-                        const scale = Math.max(cw/iw, ch/ih);
-                        const sw = iw*scale, sh = ih*scale;
-
-                        const temp2 = document.createElement("canvas");
-                        temp2.width = cw; temp2.height = ch;
-                        const t2 = temp2.getContext("2d");
-                        t2.drawImage(nextImgEl, (cw-sw)/2, (ch-sh)/2, sw, sh);
-
-                        ctx.drawImage(temp2, 0, 0, small, smallH);
-                        ctx.imageSmoothingEnabled = false;
-                        ctx.drawImage(canvas, 0, 0, small, smallH, 0, 0, cw, ch);
-                        ctx.imageSmoothingEnabled = true;
-
-                    } else {
-                        // Image not loaded yet — show dark placeholder
-                        ctx.fillStyle = "#06183e";
-                        ctx.fillRect(0, 0, canvas.width, canvas.height);
-                    }
-                }
-
-                if (t < 1) {
-                    animFrame = requestAnimationFrame(tick);
-                } else {
-                    // Final frame — draw crisp
-                    ctx.imageSmoothingEnabled = true;
-                    drawToCanvas(nextImgEl);
-                    transitioning = false;
-                }
-            }
-
-            animFrame = requestAnimationFrame(tick);
-        }
-
-        // ── Switch combination ──
-        function switchTo() {
-            const img = currentImg();
-            if (img && img.complete && img.naturalWidth) {
-                transitionTo(img);
-            } else if (img) {
-                // Not loaded yet — wait for it
-                img.onload = () => transitionTo(img);
-                transitionTo(null); // animate to placeholder
-            } else {
-                transitionTo(null);
-            }
-        }
-
-        // ── Init — draw first image or placeholder ──
-        window.addEventListener("load", () => {
-            resizeCanvas();
-            const first = currentImg();
-            if (first && first.complete && first.naturalWidth) {
-                drawToCanvas(first);
-            }
-            // else placeholder CSS shows
         });
 
-        // ── Update status label ──
+        // ── Get key for current state ──
+        function getKey() {
+            return "cst-c" + state.color + "-s" + state.sofa + "-" + state.light;
+        }
+
+        // ── Instant switch — no transition ──
+        function showImg(id) {
+            document.querySelectorAll(".cst-img").forEach(img => {
+                img.classList.toggle("is-active", img.id === id);
+            });
+            // Hide placeholder once real image is shown
+            const ph = document.querySelector("#customize .cst-bg__placeholder");
+            if (ph) ph.style.display = "none";
+        }
+
+        // ── Status label ──
         function updateStatus() {
             const t = document.getElementById("cst-status-text");
             if (t) t.textContent =
@@ -1136,6 +979,20 @@
                 sofaNames[state.sofa]   + " · " +
                 lightNames[state.light];
         }
+
+        // ── Init ──
+        function init() {
+            const first = document.getElementById(getKey());
+            if (!first) return;
+            if (first.complete && first.naturalWidth) {
+                showImg(first.id);
+            } else {
+                first.onload = () => showImg(first.id);
+            }
+        }
+
+        if (document.readyState === "complete") { init(); }
+        else { window.addEventListener("load", init); }
 
         // ── Button clicks ──
         document.querySelectorAll("[data-cst-group]").forEach(btn => {
@@ -1152,7 +1009,7 @@
 
                 state[group] = val;
                 updateStatus();
-                switchTo();
+                showImg(getKey());
             });
         });
 

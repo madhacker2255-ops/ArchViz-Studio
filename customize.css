@@ -1,8 +1,5 @@
 /* =========================================
    CUSTOMIZE SECTION
-   Canvas-based image display.
-   12 images (color×sofa×light) — all empty
-   until you drop in your renders.
 ========================================= */
 
 .customize-section {
@@ -15,46 +12,40 @@
     align-items: center;
 }
 
-/* ── Canvas — fills section, shows transitions ── */
-.cst-canvas {
+/* ── Fallback placeholder ── */
+.cst-bg__placeholder {
+    position: absolute;
+    inset: 0;
+    background: #111111;
+    z-index: 0;
+    pointer-events: none;
+}
+
+/* Images sit above placeholder */
+.cst-images {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    pointer-events: none;
+}
+
+.cst-img {
     position: absolute;
     inset: 0;
     width: 100%;
     height: 100%;
-    z-index: 0;
-    display: block;
-}
-
-/* ── Hidden image pool — preloaded, never shown directly ── */
-.cst-images {
-    position: absolute;
-    width: 1px; height: 1px;
-    overflow: hidden;
+    object-fit: cover;
+    object-position: center;
     opacity: 0;
-    pointer-events: none;
-    z-index: -1;
+
 }
 
-.cst-images img {
-    position: absolute;
-    width: 1px; height: 1px;
+.cst-img.is-active {
+    opacity: 1;
 }
 
-/* ── Placeholder shown while all images empty ── */
-.cst-bg__placeholder {
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(135deg, #0a1628 0%, #1a2d54 60%, #0d1f40 100%);
-    z-index: 0;
-    pointer-events: none;
-}
 
-/* Hide placeholder once canvas has drawn something */
-.cst-canvas.has-image ~ .cst-bg__placeholder {
-    display: none;
-}
-
-/* ── Left-side text gradient ── */
+/* ── Left gradient for text legibility ── */
 .cst-gradient {
     position: absolute;
     inset: 0;
@@ -62,14 +53,13 @@
     pointer-events: none;
     background: linear-gradient(
         90deg,
-        rgba(4, 12, 36, 0.88) 0%,
-        rgba(4, 12, 36, 0.58) 38%,
-        rgba(4, 12, 36, 0.10) 65%,
-        transparent 100%
+        rgba(0, 0, 0, 0.55) 0%,
+        rgba(0, 0, 0, 0.25) 35%,
+        transparent 60%
     );
 }
 
-/* ── Content — same padding as ct-hero__content ── */
+/* ── Content ── */
 .cst-content {
     position: relative;
     z-index: 10;
@@ -77,17 +67,15 @@
     max-width: 520px;
 }
 
-/* ── Eyebrow — exact match .ct-hero__eyebrow ── */
 .cst-eyebrow {
     font-size: 0.74rem;
     font-weight: 400;
     letter-spacing: 0.12em;
-    color: rgba(255, 255, 255, 0.60);
+    color: rgba(255,255,255,0.60);
     text-transform: uppercase;
     margin-bottom: 14px;
 }
 
-/* ── Title — span light / strong bold ── */
 .cst-title {
     font-size: clamp(2.8rem, 6.5vw, 5.5rem);
     line-height: 1.0;
@@ -98,38 +86,31 @@
 .cst-title span   { display: block; font-weight: 300; color: #ffffff; }
 .cst-title strong { display: block; font-weight: 600; color: #ffffff; }
 
-/* ── Divider line ── */
 .cst-line {
-    width: 48px;
-    height: 2px;
-    background: rgba(255, 255, 255, 0.25);
+    width: 48px; height: 2px;
+    background: rgba(255,255,255,0.25);
     border-radius: 999px;
     margin: 20px 0;
 }
 
-/* ── Description — exact match .ct-hero__desc ── */
 .cst-desc {
     font-size: clamp(0.92rem, 1.2vw, 1.05rem);
     font-weight: 300;
     line-height: 1.65;
-    color: rgba(255, 255, 255, 0.80);
+    color: rgba(255,255,255,0.80);
     margin-bottom: 36px;
     max-width: 320px;
 }
 
-/* ── Control groups ── */
-.cst-controls {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-}
+/* ── Controls ── */
+.cst-controls { display: flex; flex-direction: column; gap: 10px; }
 
 .cst-group {
     display: flex;
     align-items: center;
     gap: 8px;
-    background: rgba(255, 255, 255, 0.06);
-    border: 1px solid rgba(255, 255, 255, 0.12);
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.12);
     border-radius: 999px;
     padding: 5px 5px 5px 16px;
     backdrop-filter: blur(16px);
@@ -141,13 +122,12 @@
     font-size: 0.74rem;
     font-weight: 400;
     letter-spacing: 0.08em;
-    color: rgba(255, 255, 255, 0.35);
+    color: rgba(255,255,255,0.35);
     white-space: nowrap;
     margin-right: 4px;
     text-transform: uppercase;
 }
 
-/* ── Buttons ── */
 .cst-btn {
     display: flex;
     align-items: center;
@@ -159,6 +139,7 @@
     cursor: pointer;
     transition: background 0.2s ease, border-color 0.2s ease, transform 0.15s ease;
     outline: none;
+    -webkit-tap-highlight-color: transparent;
     color: rgba(255,255,255,0.50);
     font-size: 0.74rem;
     font-weight: 400;
@@ -213,27 +194,18 @@
 
 /* ── Responsive ── */
 @media (max-width: 768px) {
-    .customize-section {
-        align-items: flex-end;
-        padding-bottom: 48px;
-    }
-    .cst-content {
-        padding-left: 24px;
-        padding-right: 24px;
-        max-width: 100%;
-    }
+    .customize-section { align-items: flex-end; padding-bottom: 48px; }
+    .cst-content { padding-left: 24px; padding-right: 24px; max-width: 100%; }
     .cst-gradient {
-        background: linear-gradient(
-            0deg,
-            rgba(4,12,36,0.95) 0%,
-            rgba(4,12,36,0.65) 50%,
-            transparent 100%
-        );
+        background: linear-gradient(0deg,
+            rgba(0,0,0,0.70) 0%, rgba(0,0,0,0.30) 50%, transparent 100%);
     }
     .cst-group { flex-wrap: wrap; border-radius: 16px; padding: 10px 12px; }
     .cst-desc  { max-width: 100%; }
 }
 
 @media (prefers-reduced-motion: reduce) {
-    .cst-btn { transition: none; }
+    .cst-btn      { transition: none; }
+    .cst-canvas   { display: none; }
+    .cst-img.is-active { opacity: 1; }
 }
